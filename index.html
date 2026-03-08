@@ -1,439 +1,300 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="day">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Indrajit Jeeva V — Cybersecurity Professional</title>
-  <meta name="description" content="Portfolio of Indrajit Jeeva V — Cybersecurity professional specialising in digital forensics, penetration testing, DFIR, and security engineering." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Indrajit Jeeva V — Cybersecurity</title>
+  <meta name="description" content="Indrajit Jeeva V — Security Analyst, DFIR specialist and penetration tester at M2P Fintech."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <div class="wrapper">
 
-  <!-- ── NAV ──────────────────────────────────────────────────── -->
+  <!-- NAV -->
   <nav>
-    <div class="logo">Indrajit <em>Jeeva</em></div>
+    <div class="logo" onclick="navigate('home')" style="cursor:pointer">Indrajit <em>Jeeva</em></div>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#exp">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" onclick="navigate('exp');return false">Experience</a></li>
+        <li><a href="#" onclick="navigate('projects');return false">Projects</a></li>
+        <li><a href="#" onclick="navigate('skills');return false">Skills</a></li>
+        <li><a href="#" onclick="navigate('cert');return false">Certs</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span class="toggle-icon" id="toggleIcon">🌙</span>
-        <span class="toggle-label" id="toggleLabel">Night</span>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+        <span id="tIcon">🌙</span>
+        <span id="tLabel">Night</span>
       </button>
     </div>
   </nav>
 
-  <!-- ── BENTO GRID ────────────────────────────────────────────── -->
-  <div class="bento">
+  <!-- ── HOME VIEW ─────────────────────────────────────────── -->
+  <div class="view active" id="view-home">
+    <div class="bento">
 
-    <!-- 1. HERO -->
-    <div class="card c-hero" id="hero">
-      <div class="hero-mesh"></div>
-      <div class="hero-dots"></div>
-      <div class="hero-content">
-        <div class="hero-eyebrow">// Security Analyst</div>
-        <h1 class="hero-name">
-          <span class="line1">INDRAJIT</span><br>
-          <span class="grad">JEEVA V</span>
-        </h1>
-        <p class="hero-role">
-          Security Analyst at <strong>M2P Fintech</strong> · Python · DFIR<br>
-          Chennai, TN · jeevalikestech@gmail.com
-        </p>
-        <div class="hero-btns">
-          <a href="#contact" class="btn btn-primary">Get In Touch</a>
-          <a href="#exp" class="btn btn-ghost">View Work ↓</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. PHOTO -->
-    <div class="card c-photo">
-      <img
-        src="photo.jpeg"
-        alt="Indrajit Jeeva V"
-        onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:5rem;\'>🧑‍💻</div>'"
-      />
-    </div>
-
-    <!-- 3. STATUS -->
-    <div class="card c-status">
-      <div class="status-ping">Open to opportunities</div>
-      <div>
-        <div class="status-title">Security Analyst</div>
-        <div class="status-sub">At <span class="status-company">M2P Fintech</span> — Asia's largest API infra</div>
-      </div>
-    </div>
-
-    <!-- 4. LOCATION -->
-    <div class="card c-location">
-      <div class="location-map">
-        <div class="map-dots"></div>
-        <div class="map-ping"></div>
-      </div>
-      <div style="position:relative; z-index:1;">
-        <div class="location-label">Based in</div>
-        <div class="location-city">Chennai, TN 🇮🇳</div>
-      </div>
-    </div>
-
-    <!-- 5. SKILLS -->
-    <div class="card c-skills" id="skills">
-      <div class="card-label">// technical_expertise</div>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Penetration Testing</span><span class="skill-pct">88%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Digital Forensics & IR</span><span class="skill-pct">90%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Python Development</span><span class="skill-pct">85%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">SIEM (Wazuh / Splunk)</span><span class="skill-pct">82%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="82"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Vulnerability Assessment</span><span class="skill-pct">86%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="86"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Threat Intelligence</span><span class="skill-pct">83%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="83"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">ISO 27001:2022 (ISMS)</span><span class="skill-pct">78%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="78"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">IAM & Firewalls</span><span class="skill-pct">75%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Software Development</span><span class="skill-pct">80%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Memory / Disk Forensics</span><span class="skill-pct">87%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="87"></div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. EXPERIENCE -->
-    <div class="card c-exp" id="exp">
-      <div class="card-label">// work_history</div>
-      <div class="exp-list">
-
-        <!-- M2P kept intentionally vague as requested -->
-        <div class="exp-item">
-          <div class="exp-dot" style="background:#A1C2BD; box-shadow:0 0 6px #A1C2BD;"></div>
-          <div class="exp-body">
-            <div class="exp-role">Security Analyst</div>
-            <div class="exp-company">M2P Fintech — Asia's largest API infrastructure company</div>
-            <span class="exp-type">Full-time · Current</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-dot" style="background:#19183B;"></div>
-          <div class="exp-body">
-            <div class="exp-role">Cyber Security Intern</div>
-            <div class="exp-company">NCIIPC — National Critical Information Infrastructure Protection Centre · Delhi</div>
-            <span class="exp-type">May 2024 – Oct 2024</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-dot" style="background:#708993;"></div>
-          <div class="exp-body">
-            <div class="exp-role">Digital Forensics Intern</div>
-            <div class="exp-company">Information Sharing and Analysis Center (ISAC) · Bangalore</div>
-            <span class="exp-type">Mar 2024 – May 2024</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-dot" style="background:#A1C2BD;"></div>
-          <div class="exp-body">
-            <div class="exp-role">Security Researcher — Internship</div>
-            <div class="exp-company">Forefend Labs · Bangalore</div>
-            <span class="exp-type">Jan 2024 – Mar 2024</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-dot" style="background:#c5d8d5;"></div>
-          <div class="exp-body">
-            <div class="exp-role">First Officer — Internship</div>
-            <div class="exp-company">Cyber Crime Police Station · Coimbatore</div>
-            <span class="exp-type">Aug 2023 – Sep 2023</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 7. STAT 1 -->
-    <div class="card c-stat1">
-      <div class="stat-icon">🏆</div>
-      <div>
-        <div class="stat-num">3</div>
-        <div class="stat-label">Major Awards</div>
-      </div>
-    </div>
-
-    <!-- 8. STAT 2 -->
-    <div class="card c-stat2">
-      <div class="stat-icon">🛡️</div>
-      <div>
-        <div class="stat-num">6+</div>
-        <div class="stat-label">Certifications</div>
-      </div>
-    </div>
-
-    <!-- 9. EDUCATION -->
-    <div class="card c-edu" id="edu">
-      <div class="card-label">// education</div>
-      <div class="edu-list">
-        <div class="edu-item">
-          <div class="edu-degree">Masters in Cybersecurity</div>
-          <div class="edu-field">M.Sc. Cybersecurity — University Rank Holder</div>
-          <div class="edu-school">Bharathiar University, Coimbatore · 2024</div>
-        </div>
-        <div class="edu-divider"></div>
-        <div class="edu-item">
-          <div class="edu-degree">Bachelor of Computer Science</div>
-          <div class="edu-field">B.Sc. CS — First Class with Distinction · Best Project Award</div>
-          <div class="edu-school">Sri Krishna Arts and Science College, Coimbatore · 2022</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 10. CERTIFICATIONS -->
-    <div class="card c-cert">
-      <div class="card-label">// certifications</div>
-      <div class="cert-grid">
-        <div class="cert-item">
-          <span class="cert-badge badge-done">Certified</span>
-          <div class="cert-name">CEH v12</div>
-          <div class="cert-issuer">EC-Council</div>
-        </div>
-        <div class="cert-item">
-          <span class="cert-badge badge-done">Certified</span>
-          <div class="cert-name">CC — Certified in Cybersecurity</div>
-          <div class="cert-issuer">ISC²</div>
-        </div>
-        <div class="cert-item">
-          <span class="cert-badge badge-done">Certified</span>
-          <div class="cert-name">Google Cybersecurity Professional</div>
-          <div class="cert-issuer">Google</div>
-        </div>
-        <div class="cert-item">
-          <span class="cert-badge badge-done">Certified</span>
-          <div class="cert-name">ISO/IEC 27001 Info Security Associate</div>
-          <div class="cert-issuer">Skillfront</div>
-        </div>
-        <div class="cert-item">
-          <span class="cert-badge badge-done">Certified</span>
-          <div class="cert-name">Certified Investigator</div>
-          <div class="cert-issuer">CSI Linux</div>
-        </div>
-        <div class="cert-item">
-          <span class="cert-badge badge-done">Certified</span>
-          <div class="cert-name">CCIO — Cybercrime Intervention Officer</div>
-          <div class="cert-issuer">ISAC</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 11. TOOLS -->
-    <div class="card c-tools">
-      <div class="card-label">// tools_&_technologies</div>
-      <div class="tools-wrap">
-        <span class="tool-tag">Python</span>
-        <span class="tool-tag">Kali Linux</span>
-        <span class="tool-tag">Burp Suite</span>
-        <span class="tool-tag">Metasploit</span>
-        <span class="tool-tag">Nmap</span>
-        <span class="tool-tag">ZAP</span>
-        <span class="tool-tag">SQLmap</span>
-        <span class="tool-tag">Nessus</span>
-        <span class="tool-tag">Wazuh</span>
-        <span class="tool-tag">Splunk</span>
-        <span class="tool-tag">Autopsy</span>
-        <span class="tool-tag">Sleuthkit</span>
-        <span class="tool-tag">Volatility</span>
-        <span class="tool-tag">FTK</span>
-        <span class="tool-tag">Dirbuster</span>
-        <span class="tool-tag">OPNsense</span>
-        <span class="tool-tag">Django</span>
-        <span class="tool-tag">PyQT5</span>
-        <span class="tool-tag">OpenCV</span>
-        <span class="tool-tag">ffmpeg</span>
-      </div>
-    </div>
-
-    <!-- 12. PROJECTS -->
-    <div class="card c-projects" id="projects">
-      <div class="card-label">// projects</div>
-      <div class="proj-list">
-
-        <div class="proj-item">
-          <div class="proj-header">
-            <div class="proj-name">Ransomware Readiness Assessment Tool</div>
-            <span class="proj-tag">NCIIPC</span>
-          </div>
-          <div class="proj-desc">Python-based GUI tool built on a SIEM architecture to efficiently analyse system and employee readiness against ransomware in organisations. Developed during NCIIPC internship.</div>
-          <div class="proj-tech">
-            <span>Python</span><span>PyQT5</span><span>Nmap</span><span>Qt Designer</span><span>VSCode</span>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-header">
-            <div class="proj-name">Real-Time Threat Intelligence Collector</div>
-            <span class="proj-tag">NCIIPC</span>
-          </div>
-          <div class="proj-desc">Solution for real-time threat intelligence collection to provide near real-time awareness and insights to Critical Information Infrastructures (CIIs).</div>
-          <div class="proj-tech">
-            <span>Python</span><span>Threat Intel APIs</span><span>SIEM</span>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-header">
-            <div class="proj-name">Post-Incident DFIR Report — University Server</div>
-            <span class="proj-tag">DFIR</span>
-          </div>
-          <div class="proj-desc">Full investigation of a compromised live university server. Conducted DFIR, collaborated with the Disaster Recovery team, and implemented server hardening measures.</div>
-          <div class="proj-tech">
-            <span>Kali Linux</span><span>ZAP</span><span>Nmap</span><span>SQLmap</span><span>Metasploit</span><span>Autopsy</span>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-header">
-            <div class="proj-name">Multi-Format Steganography Tool</div>
-            <span class="proj-tag">Python</span>
-          </div>
-          <div class="proj-desc">Cross-platform Python tool (Windows & Linux) for advanced steganography of secret messages across Text, Video, Audio, and Image formats.</div>
-          <div class="proj-tech">
-            <span>Python</span><span>ffmpeg</span><span>OpenCV</span>
-          </div>
-        </div>
-
-        <div class="proj-item">
-          <div class="proj-header">
-            <div class="proj-name">Personality Prediction using ML</div>
-            <span class="proj-tag">ML / Web App</span>
-          </div>
-          <div class="proj-desc">ML-based web application that enables recruiters to predict candidate personality for more efficient hiring methodology.</div>
-          <div class="proj-tech">
-            <span>Python</span><span>Django</span><span>Jupyter Notebook</span><span>ML</span><span>Figma</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 13. AWARDS -->
-    <div class="card c-awards">
-      <div class="card-label">// awards_&_recognition</div>
-      <div class="award-list">
-        <div class="award-item">
-          <div class="award-icon">🥇</div>
-          <div>
-            <div class="award-title">University Rank Holder</div>
-            <div class="award-sub">Bharathiar University — Masters in Cybersecurity</div>
-          </div>
-        </div>
-        <div class="award-item">
-          <div class="award-icon">🏆</div>
-          <div>
-            <div class="award-title">Winner — Smart India Hackathon 2023</div>
-            <div class="award-sub">SIH National Level · Govt. of India</div>
-          </div>
-        </div>
-        <div class="award-item">
-          <div class="award-icon">🎖️</div>
-          <div>
-            <div class="award-title">NSD Cadet Empanelment</div>
-            <div class="award-sub">National Security Database — First Responder Training</div>
-          </div>
-        </div>
-        <div class="award-item">
-          <div class="award-icon">🌟</div>
-          <div>
-            <div class="award-title">Best Project of Department</div>
-            <div class="award-sub">Sri Krishna Arts and Science College · B.Sc. CS</div>
-          </div>
-        </div>
-        <div class="award-item">
-          <div class="award-icon">🔐</div>
-          <div>
-            <div class="award-title">Grey Box Pentest — NCIIPC</div>
-            <div class="award-sub">Conducted pentesting on NCIIPC-hosted websites</div>
+      <!-- 1. HERO -->
+      <div class="card c-hero">
+        <div class="hero-mesh"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">// Security Analyst</div>
+          <h1 class="hero-name">
+            INDRAJIT<br>
+            <span class="grad">JEEVA V</span>
+          </h1>
+          <p class="hero-role">
+            At <strong>M2P Fintech</strong> · Python · DFIR · Pentest<br>
+            Chennai · jeevalikestech@gmail.com
+          </p>
+          <div class="hero-btns">
+            <a href="#" onclick="navigate('exp');return false" class="btn btn-p">View Work</a>
+            <a href="https://linkedin.com/in/indrajitjeeva" target="_blank" class="btn btn-g">LinkedIn ↗</a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 14. CONTACT -->
-    <div class="card c-contact" id="contact">
-      <div>
-        <div class="contact-heading">Let's Connect</div>
-        <p class="contact-sub">
-          Open to cybersecurity roles, research collaborations,<br>
-          and meaningful conversations in the security space.
-        </p>
-        <div style="margin-top:12px; display:flex; flex-direction:column; gap:5px;">
-          <span style="font-family:var(--mono); font-size:0.62rem; color:rgba(231,242,239,0.5);">📧 jeevalikestech@gmail.com</span>
-          <span style="font-family:var(--mono); font-size:0.62rem; color:rgba(231,242,239,0.5);">📱 (+91) 9597257282</span>
-        </div>
+      <!-- 2. PHOTO -->
+      <div class="card c-photo">
+        <img
+          src="080A8087.jpeg"
+          alt="Indrajit Jeeva V"
+          onerror="this.parentElement.style.background='var(--surface2)';this.style.display='none';this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>🧑‍💻</div>'"
+        />
       </div>
-      <div class="contact-form">
-        <div class="contact-row">
-          <input type="text" placeholder="Your name" />
-          <input type="email" placeholder="Your email" />
-        </div>
-        <textarea rows="2" placeholder="Your message…"></textarea>
-        <button class="btn-send" onclick="sendMsg(this)">Send Message →</button>
-      </div>
-    </div>
 
-    <!-- 15. LINKEDIN -->
-    <a href="https://www.linkedin.com/in/indrajitjeeva" target="_blank" rel="noopener" class="card c-linkedin">
-      <div class="li-top">
-        <div class="li-icon">in</div>
+      <!-- 3. STATUS -->
+      <div class="card c-status">
+        <div class="ping">Open to Opportunities</div>
         <div>
-          <div class="li-text">LinkedIn</div>
-          <div class="li-sub">indrajitjeeva</div>
+          <div class="s-title">Security Analyst</div>
+          <div class="s-sub">At <span class="s-co">M2P Fintech</span> — Asia's largest API infra</div>
         </div>
       </div>
-      <div class="li-arrow">↗</div>
-    </a>
 
-    <!-- 16. QUOTE -->
-    <div class="card c-quote">
-      <div class="quote-mark">"</div>
-      <div class="quote-text">Tenacity, precision, and a bias for quality over quantity — that's how I approach security.</div>
-      <div class="quote-attr">— Indrajit Jeeva V</div>
-    </div>
+      <!-- 4. LOCATION -->
+      <div class="card c-loc">
+        <div class="loc-map">
+          <div class="map-dots"></div>
+          <div class="map-ping"></div>
+        </div>
+        <div style="position:relative;z-index:1">
+          <div class="loc-label">Based in</div>
+          <div class="loc-city">Chennai, TN 🇮🇳</div>
+        </div>
+      </div>
 
-  </div><!-- /bento -->
+      <!-- 5. EXPERIENCE PREVIEW → detail page -->
+      <div class="card c-exp clickable" onclick="navigate('exp')">
+        <div class="lbl">// experience</div>
+        <div class="exp-preview">
+          <div class="ep-item">
+            <div class="ep-dot" style="background:#A1C2BD;box-shadow:0 0 6px #A1C2BD"></div>
+            <div class="ep-info">
+              <div class="ep-role">Security Analyst</div>
+              <div class="ep-co">M2P Fintech · Current</div>
+            </div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-dot" style="background:#19183B"></div>
+            <div class="ep-info">
+              <div class="ep-role">Cyber Security Intern</div>
+              <div class="ep-co">NCIIPC · Delhi · May–Oct 2024</div>
+            </div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-dot" style="background:#708993"></div>
+            <div class="ep-info">
+              <div class="ep-role">Digital Forensics Intern</div>
+              <div class="ep-co">ISAC · Bangalore · Mar–May 2024</div>
+            </div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-dot" style="background:#A1C2BD"></div>
+            <div class="ep-info">
+              <div class="ep-role">Security Researcher</div>
+              <div class="ep-co">Forefend Labs · Jan–Mar 2024</div>
+            </div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-dot" style="background:#c5d8d5"></div>
+            <div class="ep-info">
+              <div class="ep-role">First Response Officer</div>
+              <div class="ep-co">Cyber Crime Police · Aug–Sep 2023</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-more">View all details</div>
+      </div>
+
+      <!-- 6. SKILLS PREVIEW → detail page -->
+      <div class="card c-skills clickable" onclick="navigate('skills')">
+        <div class="lbl">// skills</div>
+        <div class="skills-compact">
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-name">DFIR</span><span class="sk-pct">90%</span></div>
+            <div class="sk-track"><div class="sk-fill" data-width="90"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-name">Pentest</span><span class="sk-pct">88%</span></div>
+            <div class="sk-track"><div class="sk-fill" data-width="88"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-name">Python</span><span class="sk-pct">85%</span></div>
+            <div class="sk-track"><div class="sk-fill" data-width="85"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-name">Memory Forensics</span><span class="sk-pct">87%</span></div>
+            <div class="sk-track"><div class="sk-fill" data-width="87"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-name">Vuln Assessment</span><span class="sk-pct">86%</span></div>
+            <div class="sk-track"><div class="sk-fill" data-width="86"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-name">SIEM</span><span class="sk-pct">82%</span></div>
+            <div class="sk-track"><div class="sk-fill" data-width="82"></div></div>
+          </div>
+        </div>
+        <div class="card-more">View all 12 skills</div>
+      </div>
+
+      <!-- 7. PROJECTS PREVIEW → detail page -->
+      <div class="card c-proj clickable" onclick="navigate('projects')">
+        <div class="lbl">// projects</div>
+        <div class="proj-peek">
+          <div class="pp-item">
+            <div class="pp-name">Ransomware Readiness Tool</div>
+            <div class="pp-tag">Python · PyQT5 · NCIIPC</div>
+          </div>
+          <div class="pp-item">
+            <div class="pp-name">Steganography Tool</div>
+            <div class="pp-tag">Python · ffmpeg · OpenCV</div>
+          </div>
+          <div class="pp-item">
+            <div class="pp-name">DFIR — University Server</div>
+            <div class="pp-tag">Kali · Autopsy · Metasploit</div>
+          </div>
+        </div>
+        <div class="card-more">View all 5 projects</div>
+      </div>
+
+      <!-- 8. CERTS PREVIEW → detail page -->
+      <div class="card c-cert clickable" onclick="navigate('cert')">
+        <div class="lbl">// certifications</div>
+        <div class="cert-peek">
+          <div class="cp-item"><div class="cp-dot"></div><div class="cp-name">CEH v12 · EC-Council</div></div>
+          <div class="cp-item"><div class="cp-dot"></div><div class="cp-name">CC · ISC²</div></div>
+          <div class="cp-item"><div class="cp-dot"></div><div class="cp-name">Google Cybersecurity Professional</div></div>
+          <div class="cp-item"><div class="cp-dot"></div><div class="cp-name">ISO/IEC 27001 Associate</div></div>
+        </div>
+        <div class="card-more">View all 7 certs</div>
+      </div>
+
+      <!-- 9. AWARDS → detail page -->
+      <div class="card c-awards clickable" onclick="navigate('awards')">
+        <div class="lbl">// awards</div>
+        <div class="aw-peek">
+          <div class="aw-item">
+            <div class="aw-icon">🥇</div>
+            <div>
+              <div class="aw-title">University Rank Holder</div>
+              <div class="aw-sub">Bharathiar University</div>
+            </div>
+          </div>
+          <div class="aw-item">
+            <div class="aw-icon">🏆</div>
+            <div>
+              <div class="aw-title">SIH 2023 Winner</div>
+              <div class="aw-sub">Smart India Hackathon · National</div>
+            </div>
+          </div>
+          <div class="aw-item">
+            <div class="aw-icon">🎖️</div>
+            <div>
+              <div class="aw-title">NSD Cadet</div>
+              <div class="aw-sub">National Security Database</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-more">View all</div>
+      </div>
+
+      <!-- 10. TOOLS -->
+      <div class="card c-tools">
+        <div class="lbl">// tools_&_tech</div>
+        <div class="tools-wrap">
+          <span class="tag">Python</span>
+          <span class="tag">Kali Linux</span>
+          <span class="tag">Burp Suite</span>
+          <span class="tag">Metasploit</span>
+          <span class="tag">Nmap</span>
+          <span class="tag">ZAP</span>
+          <span class="tag">SQLmap</span>
+          <span class="tag">Nessus</span>
+          <span class="tag">Wazuh</span>
+          <span class="tag">Splunk</span>
+          <span class="tag">Autopsy</span>
+          <span class="tag">Volatility</span>
+          <span class="tag">FTK</span>
+          <span class="tag">Sleuthkit</span>
+          <span class="tag">Dirbuster</span>
+          <span class="tag">OPNsense</span>
+          <span class="tag">Django</span>
+          <span class="tag">PyQT5</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">ffmpeg</span>
+        </div>
+      </div>
+
+      <!-- 11. CONTACT -->
+      <div class="card c-contact">
+        <div>
+          <div class="ct-head">Let's Connect</div>
+          <p class="ct-sub">Open to security roles, research collabs and meaningful conversations.</p>
+          <div class="ct-links">
+            <span class="ct-link">📧 jeevalikestech@gmail.com</span>
+            <span class="ct-link">📱 (+91) 9597257282</span>
+          </div>
+        </div>
+        <div class="cf">
+          <div class="cf-row">
+            <input type="text" placeholder="Your name"/>
+            <input type="email" placeholder="Your email"/>
+          </div>
+          <textarea rows="2" placeholder="Your message…"></textarea>
+          <button class="cf-btn" onclick="sendMsg(this)">Send Message →</button>
+        </div>
+      </div>
+
+      <!-- 12. EDUCATION -->
+      <div class="card c-edu">
+        <div class="lbl">// education</div>
+        <div class="edu-list">
+          <div class="edu-item">
+            <div class="edu-deg">M.Sc. Cybersecurity</div>
+            <div class="edu-field">University Rank Holder</div>
+            <div class="edu-school">Bharathiar University · 2024</div>
+          </div>
+          <div class="edu-div"></div>
+          <div class="edu-item">
+            <div class="edu-deg">B.Sc. Computer Science</div>
+            <div class="edu-field">First Class with Distinction</div>
+            <div class="edu-school">Sri Krishna Arts & Science · 2022</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /bento -->
+  </div><!-- /view-home -->
+
+  <!-- ── DETAIL VIEW ───────────────────────────────────────── -->
+  <div class="view" id="view-detail">
+    <div id="detail-wrap"></div>
+  </div>
+
 </div><!-- /wrapper -->
 
 <script src="main.js"></script>
