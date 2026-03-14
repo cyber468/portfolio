@@ -1,349 +1,243 @@
-/* ── DATA ───────────────────────────────────────────────────── */
+/* ── DATA ─────────────────────────────────────────────────── */
 const DATA = {
   experience: [
     {
-      role: 'Security Analyst',
-      company: 'M2P Fintech',
-      loc: 'Chennai, Tamil Nadu',
+      role: 'Security Analyst', company: 'M2P Fintech', loc: 'Chennai, TN',
       period: 'Oct 2024 – Present',
-      color: '#A1C2BD',
       bullets: [
-        'Security operations at Asia\'s largest API infrastructure — serving 300+ banks, 100+ NBFCs and 800+ fintechs across 20+ markets',
-        'Monitoring and analysing security events across fintech payment and lending infrastructure',
-        'Vulnerability assessments and penetration testing on internal and client-facing systems',
-        'Incident detection, triage, and response using SIEM tools (Wazuh/Splunk)',
-        'Collaborating with engineering teams on API security hardening and IAM policies',
-        'Contributing to ISO 27001 compliance activities and security awareness initiatives',
+        'Security operations across Asia\'s largest API infrastructure — 300+ banks, 100+ NBFCs, 800+ fintechs in 20+ markets',
+        'Threat monitoring, detection & triage using Wazuh / Splunk SIEM',
+        'Vulnerability assessments and penetration testing on internal and client systems',
+        'Incident response: detection, containment, eradication & post-incident reporting',
+        'API security hardening and IAM policy review with engineering teams',
+        'ISO 27001 compliance activities and security awareness initiatives',
       ],
-      tags: ['SIEM','Threat Detection','API Security','Incident Response','Fintech','IAM','ISO 27001'],
+      tags: ['SIEM','API Security','Incident Response','IAM','ISO 27001','Wazuh','Splunk'],
     },
     {
-      role: 'Cyber Security Intern',
-      company: 'NCIIPC — National Critical Information Infrastructure Protection Centre',
-      loc: 'Delhi, India',
+      role: 'Cyber Security Intern', company: 'NCIIPC', loc: 'Delhi, India',
       period: 'May 2024 – Oct 2024',
-      color: '#19183B',
       bullets: [
-        'Implemented an In-House Advisory Management System for tracking and distributing security advisories to CIIs',
-        'Developed Ransomware Readiness Assessment Solution (Python/PyQT5) for Critical Information Infrastructures',
-        'Built a real-time threat intelligence collection system providing near-real-time awareness to CIIs',
-        'Conducted Grey Box penetration testing on requested websites hosted by NCIIPC',
-        'Produced promotion and advertising resources for the ransomware readiness programme',
+        'Built In-House Advisory Management System for distributing advisories to Critical Information Infrastructures',
+        'Developed Ransomware Readiness Assessment Solution (Python/PyQT5)',
+        'Built real-time threat intelligence collection system for CII operators',
+        'Conducted Grey Box penetration testing on NCIIPC-hosted websites',
       ],
-      tags: ['Python','Pentesting','Threat Intel','Ransomware','Grey Box','Advisory Mgmt','SIEM'],
+      tags: ['Python','Grey Box Pentest','Threat Intel','Ransomware','PyQT5','SIEM'],
     },
     {
-      role: 'Digital Forensics Intern',
-      company: 'Information Sharing and Analysis Center (ISAC)',
-      loc: 'Bangalore, India',
+      role: 'Digital Forensics Intern', company: 'ISAC', loc: 'Bangalore, India',
       period: 'Mar 2024 – May 2024',
-      color: '#708993',
       bullets: [
-        'Memory analysis of disk and memory images to identify suspicious artefacts and determine root cause',
-        'Developed cybersecurity awareness blogs and training material for the NSD community',
-        'Received NSD (National Security Database) empanelment and first-responder training',
-        'Collaborated with analysts on threat-sharing workflows across member organisations',
+        'Memory & disk image analysis — suspicious artefact identification and root cause analysis',
+        'Cybersecurity awareness blogs and training material for the NSD community',
+        'NSD (National Security Database) empanelment and first-responder training',
       ],
-      tags: ['Digital Forensics','Memory Analysis','Disk Imaging','DFIR','Autopsy','Volatility','First Responder'],
+      tags: ['DFIR','Memory Analysis','Autopsy','Volatility','NSD','First Responder'],
     },
     {
-      role: 'Security Researcher — Internship',
-      company: 'Forefend Labs',
-      loc: 'Bangalore, India',
+      role: 'Security Researcher', company: 'Forefend Labs', loc: 'Bangalore, India',
       period: 'Jan 2024 – Mar 2024',
-      color: '#A1C2BD',
       bullets: [
-        'Conducted penetration tests on client websites and reported findings with remediation guidance',
-        'Collaborated across teams for cybersecurity content creation and research publication',
-        'Involved in collecting and managing client prospects and sales pipelines for the company',
+        'Penetration tests on client websites with detailed remediation reports',
+        'Cybersecurity content creation and research publication across teams',
       ],
-      tags: ['Penetration Testing','Web App Security','Burp Suite','Reporting','Content Creation'],
+      tags: ['Penetration Testing','Web App Security','Burp Suite','Reporting'],
     },
     {
-      role: 'First Incident Response Officer — Internship',
-      company: 'Cyber Crime Police Station',
-      loc: 'Coimbatore, India',
+      role: 'First Response Officer', company: 'Cyber Crime Police Station', loc: 'Coimbatore, India',
       period: 'Aug 2023 – Sep 2023',
-      color: '#c5d8d5',
       bullets: [
-        'Worked as a First Incident Response Officer handling cyber crime complaints',
-        'Obtained critical information and digital evidence from petitioners during interrogations',
-        'Filed complaints on behalf of victims and guided them through the formal complaint process',
-        'Gained exposure to legal frameworks surrounding cybercrime in India',
+        'Handled cyber crime complaints as First Incident Response Officer',
+        'Collected digital evidence from petitioners during interrogations',
+        'Filed complaints and guided victims through the formal process',
       ],
       tags: ['Incident Response','Digital Evidence','Cyber Law','First Responder'],
     },
   ],
-
   skills: [
-    {name:'Digital Forensics & IR', pct:90},
-    {name:'Penetration Testing', pct:88},
-    {name:'Python Development', pct:85},
-    {name:'Memory / Disk Forensics', pct:87},
-    {name:'SIEM (Wazuh / Splunk)', pct:82},
-    {name:'Vulnerability Assessment', pct:86},
-    {name:'Threat Intelligence', pct:83},
-    {name:'ISO 27001 / ISMS', pct:78},
-    {name:'Software Development', pct:80},
-    {name:'IAM & Firewalls', pct:75},
-    {name:'API Security', pct:80},
-    {name:'Network Security', pct:78},
+    {name:'Digital Forensics & IR',pct:90},{name:'Penetration Testing',pct:88},
+    {name:'Memory / Disk Forensics',pct:87},{name:'Python Development',pct:85},
+    {name:'Vulnerability Assessment',pct:86},{name:'Threat Intelligence',pct:83},
+    {name:'SIEM (Wazuh / Splunk)',pct:82},{name:'ISO 27001 / ISMS',pct:78},
+    {name:'Software Development',pct:80},{name:'API Security',pct:80},
+    {name:'IAM & Firewalls',pct:75},{name:'Network Security',pct:78},
   ],
-
   projects: [
-    {
-      name:'Ransomware Readiness Assessment Tool',
-      tag:'NCIIPC · Python',
-      desc:'Python-based GUI tool on a SIEM architecture to efficiently analyse system and employee readiness against ransomware in organisations. Developed during the NCIIPC internship and presented as a CII solution.',
-      tech:['Python','PyQT5','Nmap','Qt Designer','SIEM','VSCode'],
-    },
-    {
-      name:'Real-Time Threat Intelligence Collector',
-      tag:'NCIIPC · Threat Intel',
-      desc:'Solution for near-real-time threat intelligence collection providing situational awareness to Critical Information Infrastructures (CIIs). Aggregates feeds and surfaces actionable insights to operators.',
-      tech:['Python','Threat Intel APIs','SIEM','REST APIs'],
-    },
-    {
-      name:'Post-Incident DFIR — Compromised University Server',
-      tag:'DFIR · Investigation',
-      desc:'Full investigation of a compromised live university server. Conducted DFIR analysis, collaborated with the Disaster Recovery team, documented findings, and implemented server hardening measures.',
-      tech:['Kali Linux','ZAP','Nmap','SQLmap','Dirbuster','Metasploit','Autopsy','Excel'],
-    },
-    {
-      name:'Multi-Format Steganography Tool',
-      tag:'Python · Security',
-      desc:'Cross-platform Python tool (Windows & Linux) for advanced steganography — embedding secret messages within Text, Video, Audio, and Image formats for secure covert communication.',
-      tech:['Python','ffmpeg','OpenCV'],
-    },
-    {
-      name:'Personality Prediction using Machine Learning',
-      tag:'ML · Web App',
-      desc:'ML-based web application enabling recruiters to predict candidate personality traits for more efficient hiring. Built with Django backend and interactive Figma-designed frontend.',
-      tech:['Python','Django','Jupyter Notebook','Machine Learning','Figma'],
-    },
+    { name:'Ransomware Readiness Assessment Tool', tag:'NCIIPC · Python',
+      desc:'Python GUI on a SIEM architecture to analyse system and employee readiness against ransomware. Built for CIIs at NCIIPC.',
+      tech:['Python','PyQT5','Nmap','Qt Designer','SIEM'], link:'' },
+    { name:'Real-Time Threat Intelligence Collector', tag:'NCIIPC · Threat Intel',
+      desc:'Near-real-time threat intel aggregation for Critical Information Infrastructures — multiple feed sources surfaced to operators.',
+      tech:['Python','Threat Intel APIs','SIEM','REST APIs'], link:'' },
+    { name:'Post-Incident DFIR — University Server', tag:'DFIR · Investigation',
+      desc:'Full investigation of a compromised live university server — DFIR analysis, DR collaboration, documentation, and hardening.',
+      tech:['Kali Linux','ZAP','Nmap','SQLmap','Metasploit','Autopsy'], link:'' },
+    { name:'Multi-Format Steganography Tool', tag:'Python · Security',
+      desc:'Cross-platform Python tool for steganography across Text, Video, Audio and Image formats.',
+      tech:['Python','ffmpeg','OpenCV'], link:'' },
+    { name:'Personality Prediction via ML', tag:'ML · Web App',
+      desc:'ML web app enabling recruiters to predict candidate personality for efficient hiring, built with Django.',
+      tech:['Python','Django','ML','Jupyter','Figma'], link:'' },
   ],
-
   certs: [
-    {name:'CEH v12', issuer:'EC-Council'},
-    {name:'CC — Certified in Cybersecurity', issuer:'ISC²'},
-    {name:'Google Cybersecurity Professional', issuer:'Google'},
-    {name:'ISO/IEC 27001 Information Security Associate', issuer:'Skillfront'},
-    {name:'Certified Investigator', issuer:'CSI Linux'},
-    {name:'CCIO — Cybercrime Intervention Officer', issuer:'ISAC'},
-    {name:'CPEW', issuer:'Cleanexit'},
+    {name:'CEH v12',issuer:'EC-Council',link:''},
+    {name:'CC — Certified in Cybersecurity',issuer:'ISC²',link:''},
+    {name:'Google Cybersecurity Professional',issuer:'Google',link:''},
+    {name:'ISO/IEC 27001 Information Security Associate',issuer:'Skillfront',link:''},
+    {name:'Certified Investigator',issuer:'CSI Linux',link:''},
+    {name:'CCIO — Cybercrime Intervention Officer',issuer:'ISAC',link:''},
+    {name:'CPEW',issuer:'Cleanexit',link:''},
   ],
-
   awards: [
-    {icon:'🥇', title:'University Rank Holder', sub:'Bharathiar University — Masters in Cybersecurity (2024)'},
-    {icon:'🏆', title:'Winner — Smart India Hackathon 2023', sub:'National Level · Government of India'},
-    {icon:'🎖️', title:'NSD Cadet Empanelment', sub:'National Security Database — First Responder Training'},
-    {icon:'🌟', title:'Best Project of Department', sub:'Sri Krishna Arts and Science College · B.Sc. CS'},
-    {icon:'🔐', title:'NCIIPC Grey Box Pentest', sub:'Conducted pentest on NCIIPC-hosted websites'},
+    {icon:'🥇',title:'University Rank Holder',sub:'Bharathiar University — M.Sc. Cybersecurity · 2024'},
+    {icon:'🏆',title:'Smart India Hackathon 2023 — Winner',sub:'National Level · Govt. of India'},
+    {icon:'🎖️',title:'NSD Cadet Empanelment',sub:'National Security Database — First Responder Training'},
+    {icon:'🌟',title:'Best Project of Department',sub:'Sri Krishna Arts & Science College · B.Sc. CS · 2022'},
+    {icon:'🔐',title:'NCIIPC Grey Box Pentest',sub:'Authorised pentesting on NCIIPC-hosted websites'},
   ],
 };
 
-/* ── THEME ──────────────────────────────────────────────────── */
-const root = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
-const tIcon = document.getElementById('tIcon');
-const tLabel = document.getElementById('tLabel');
+/* ── POINTER GLOW ─────────────────────────────────────────── */
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--mx', '50%');
+    card.style.setProperty('--my', '50%');
+  });
+});
 
-function applyTheme(t) {
-  root.setAttribute('data-theme', t);
-  localStorage.setItem('theme', t);
-  tIcon.textContent  = t === 'night' ? '☀️' : '🌙';
-  tLabel.textContent = t === 'night' ? 'Day'  : 'Night';
-}
-const saved = localStorage.getItem('theme') ||
-  (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'night' : 'day');
-applyTheme(saved);
-themeBtn.addEventListener('click', () =>
-  applyTheme(root.getAttribute('data-theme') === 'night' ? 'day' : 'night')
-);
+/* ── CARD FADE IN ─────────────────────────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.04 });
+document.querySelectorAll('.card').forEach(c => io.observe(c));
 
-/* ── SPA ROUTER ─────────────────────────────────────────────── */
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const el = document.getElementById(id);
-  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
-}
-
-function navigate(page) {
-  if (page === 'home') {
-    showView('view-home');
-    return;
-  }
-  // Build and inject detail page
-  buildDetail(page);
-  showView('view-detail');
-}
-
-/* ── DETAIL BUILDER ─────────────────────────────────────────── */
-function buildDetail(page) {
-  const wrap = document.getElementById('detail-wrap');
-  wrap.innerHTML = `
-    <button class="back-btn" onclick="navigate('home')">← Back</button>
-    ${pageContent(page)}
-  `;
-  // Animate skill fills in detail pages
-  requestAnimationFrame(() => {
-    wrap.querySelectorAll('.sf-fill').forEach(f => {
-      setTimeout(() => { f.style.width = f.dataset.width + '%'; }, 100);
+/* ── SKILL BARS ───────────────────────────────────────────── */
+const sc = document.querySelector('.c-skills');
+if (sc) {
+  const sio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('#bento .sk-fill').forEach(f =>
+          setTimeout(() => { f.style.width = f.dataset.w + '%'; }, 200)
+        );
+        sio.disconnect();
+      }
     });
-  });
+  }, { threshold: 0.1 });
+  sio.observe(sc);
 }
 
-function pageContent(page) {
-  switch(page) {
-    case 'exp':     return expDetail();
-    case 'skills':  return skillsDetail();
-    case 'projects':return projectsDetail();
-    case 'cert':    return certDetail();
-    case 'awards':  return awardsDetail();
-    default: return '<p>Page not found.</p>';
-  }
-}
-
-function expDetail() {
-  return `
-    <div class="detail">
-      <h1 class="detail-title">Experience</h1>
-      <p class="detail-sub">Full work history — roles, responsibilities & skills used</p>
-      ${DATA.experience.map(e => `
-        <div class="exp-full-item">
-          <div class="efi-top">
-            <div>
-              <div class="efi-role" style="color:${e.color === '#19183B' && root.getAttribute('data-theme')==='day' ? e.color : (e.color === '#19183B' ? '#A1C2BD' : e.color)}">${e.role}</div>
-              <div class="efi-co">${e.company} · ${e.loc}</div>
-            </div>
-            <span class="efi-period">${e.period}</span>
-          </div>
-          <ul class="efi-bullets">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-          <div class="efi-tags">${e.tags.map(t=>`<span class="efi-tag">${t}</span>`).join('')}</div>
-        </div>
-      `).join('')}
-    </div>`;
-}
-
-function skillsDetail() {
-  return `
-    <div class="detail">
-      <h1 class="detail-title">Skills</h1>
-      <p class="detail-sub">Technical expertise & proficiency levels</p>
-      <div class="skills-full">
-        ${DATA.skills.map(s => `
-          <div class="sf-item">
-            <div class="sf-row">
-              <span class="sf-name">${s.name}</span>
-              <span class="sf-pct">${s.pct}%</span>
-            </div>
-            <div class="sf-track"><div class="sf-fill" data-width="${s.pct}"></div></div>
-          </div>
-        `).join('')}
-      </div>
-    </div>`;
-}
-
-function projectsDetail() {
-  return `
-    <div class="detail">
-      <h1 class="detail-title">Projects</h1>
-      <p class="detail-sub">Research, tools and applications built across internships and personal work</p>
-      ${DATA.projects.map(p => `
-        <div class="proj-full-item">
-          <div class="pfi-head">
-            <div class="pfi-name">${p.name}</div>
-            <span class="pfi-tag">${p.tag}</span>
-          </div>
-          <div class="pfi-desc">${p.desc}</div>
-          <div class="pfi-tech">${p.tech.map(t=>`<span>${t}</span>`).join('')}</div>
-        </div>
-      `).join('')}
-    </div>`;
-}
-
-function certDetail() {
-  return `
-    <div class="detail">
-      <h1 class="detail-title">Certifications</h1>
-      <p class="detail-sub">Professional credentials and completed programmes</p>
-      <div class="cert-full-grid">
-        ${DATA.certs.map(c => `
-          <div class="cfi">
-            <span class="cfi-badge">Certified</span>
-            <div class="cfi-name">${c.name}</div>
-            <div class="cfi-issuer">${c.issuer}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>`;
-}
-
-function awardsDetail() {
-  return `
-    <div class="detail">
-      <h1 class="detail-title">Awards & Recognition</h1>
-      <p class="detail-sub">Achievements and notable recognitions</p>
-      ${DATA.awards.map(a => `
-        <div class="award-full-item">
-          <div class="afi-icon">${a.icon}</div>
-          <div>
-            <div class="afi-title">${a.title}</div>
-            <div class="afi-sub">${a.sub}</div>
-          </div>
-        </div>
-      `).join('')}
-    </div>`;
-}
-
-/* ── BENTO FADE-IN ──────────────────────────────────────────── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.06 });
-document.querySelectorAll('.card').forEach(c => observer.observe(c));
-
-/* ── SKILL BAR (home bento) ─────────────────────────────────── */
-const skillsCard = document.querySelector('.c-skills');
-const skillsObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.sk-fill').forEach(f =>
-        setTimeout(() => { f.style.width = f.dataset.width + '%'; }, 200)
-      );
-      skillsObs.disconnect();
-    }
-  });
-}, { threshold: 0.2 });
-if (skillsCard) skillsObs.observe(skillsCard);
-
-/* ── TYPEWRITER ─────────────────────────────────────────────── */
-const roles = ['Security Analyst','Threat Hunter','DFIR Specialist','Pentest Engineer','SOC Analyst'];
+/* ── TYPEWRITER ───────────────────────────────────────────── */
+const roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hunter','SOC Analyst'];
 let ri = 0, ci = 0, del = false;
-const lbl = document.querySelector('.hero-eyebrow');
-if (lbl) {
+const ey = document.querySelector('.hero-ey');
+if (ey) {
   setInterval(() => {
     const cur = roles[ri];
-    if (!del && ci <= cur.length) { lbl.textContent = '// ' + cur.slice(0, ci++); }
-    else if (!del) { del = true; }
-    else if (del && ci > 0) { lbl.textContent = '// ' + cur.slice(0, --ci); }
-    else { del = false; ri = (ri + 1) % roles.length; }
+    if (!del && ci <= cur.length)     { ey.textContent = '// ' + cur.slice(0, ci++); }
+    else if (!del)                    { del = true; }
+    else if (del && ci > 0)           { ey.textContent = '// ' + cur.slice(0, --ci); }
+    else                              { del = false; ri = (ri + 1) % roles.length; }
   }, 85);
 }
 
-/* ── CONTACT FORM ───────────────────────────────────────────── */
-function sendMsg(btn) {
-  const form = btn.closest('.cf');
-  const vals = [...form.querySelectorAll('input,textarea')].map(i => i.value.trim());
-  if (vals.some(v => !v)) {
-    btn.textContent = 'Fill all fields ↩'; btn.style.background = '#708993'; btn.style.color = '#fff';
-    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.style.color = ''; }, 2000);
-    return;
-  }
-  btn.textContent = 'Sending…'; btn.style.opacity = '.7';
+/* ── DETAIL PAGE ──────────────────────────────────────────── */
+const detailEl = document.getElementById('view-detail');
+const wrapEl   = document.getElementById('detail-wrap');
+
+function openPage(p) {
+  wrapEl.innerHTML = buildPage(p);
+  detailEl.classList.add('active');
+  detailEl.scrollTop = 0;
+  // Animate skill bars in detail
   setTimeout(() => {
-    btn.textContent = '✓ Sent!'; btn.style.opacity = '1';
-    btn.style.background = '#A1C2BD'; btn.style.color = '#19183B';
-  }, 1400);
+    detailEl.querySelectorAll('.sf-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
+  }, 180);
+  // GSAP entrance if loaded
+  if (window.gsap) {
+    gsap.from('#detail-wrap > .detail > *', { y: 18, opacity: 0, duration: .45, stagger: .07, ease: 'power2.out' });
+  }
+}
+
+function closePage() {
+  detailEl.classList.remove('active');
+}
+
+/* ── PAGE CONTENT BUILDERS ────────────────────────────────── */
+function buildPage(p) {
+  const map = { exp: expPage, skills: skillsPage, projects: projPage, cert: certPage, awards: awardsPage };
+  return `<div class="detail">${(map[p] || (() => ''))()}</div>`;
+}
+
+function expPage() {
+  return `<h1 class="detail-title">Experience</h1>
+  <p class="detail-sub">Full work history — roles, responsibilities & tools used</p>
+  ${DATA.experience.map(e => `
+    <div class="d-card">
+      <div class="d-top">
+        <div><div class="d-role">${e.role}</div><div class="d-co">${e.company} · ${e.loc}</div></div>
+        <span class="d-period">${e.period}</span>
+      </div>
+      <ul class="d-ul">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+      <div class="d-tags">${e.tags.map(t => `<span class="d-tag">${t}</span>`).join('')}</div>
+    </div>`).join('')}`;
+}
+
+function skillsPage() {
+  return `<h1 class="detail-title">Skills</h1>
+  <p class="detail-sub">Technical expertise & proficiency levels</p>
+  <div class="d-grid2">
+    ${DATA.skills.map(s => `
+      <div class="sf">
+        <div class="sf-row"><span class="sf-name">${s.name}</span><span class="sf-pct">${s.pct}%</span></div>
+        <div class="sf-track"><div class="sf-fill" data-w="${s.pct}"></div></div>
+      </div>`).join('')}
+  </div>`;
+}
+
+function projPage() {
+  return `<h1 class="detail-title">Projects</h1>
+  <p class="detail-sub">Research, tools & applications — paste GitHub links in main.js DATA.projects[n].link</p>
+  ${DATA.projects.map(p => `
+    <div class="pfi">
+      <div class="pfi-top">
+        <div class="pfi-name">${p.name}</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+          <span class="pill">${p.tag}</span>
+          ${p.link ? `<a href="${p.link}" target="_blank" class="pfi-link">View ↗</a>` : ''}
+        </div>
+      </div>
+      <div class="pfi-desc">${p.desc}</div>
+      <div class="pfi-tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+    </div>`).join('')}`;
+}
+
+function certPage() {
+  return `<h1 class="detail-title">Certifications</h1>
+  <p class="detail-sub">Professional credentials — paste verify URLs in main.js DATA.certs[n].link</p>
+  <div class="d-grid3">
+    ${DATA.certs.map(c => `
+      <div class="cfd">
+        <span class="cfd-badge">Certified</span>
+        <div class="cfd-name">${c.name}</div>
+        <div class="cfd-issuer">${c.issuer}</div>
+        ${c.link ? `<a href="${c.link}" target="_blank" class="cfd-btn">Verify ↗</a>` : ''}
+      </div>`).join('')}
+  </div>`;
+}
+
+function awardsPage() {
+  return `<h1 class="detail-title">Awards & Recognition</h1>
+  <p class="detail-sub">Achievements and notable honours</p>
+  ${DATA.awards.map(a => `
+    <div class="d-card" style="display:flex;align-items:flex-start;gap:14px">
+      <span style="font-size:1.6rem;flex-shrink:0">${a.icon}</span>
+      <div><div class="d-role">${a.title}</div><div style="font-size:.7rem;color:var(--c2);margin-top:3px">${a.sub}</div></div>
+    </div>`).join('')}`;
 }
