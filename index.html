@@ -328,19 +328,20 @@ nav {
 
 /* ② STATUS */
 .c-status {
-  background: linear-gradient(145deg,
-    rgba(57,62,70,.7) 0%,
-    rgba(148,137,121,.2) 100%) !important;
+  background:
+    radial-gradient(ellipse at 85% 12%, rgba(223,208,184,.14) 0%, transparent 50%),
+    linear-gradient(145deg, #393E46 0%, #2c3139 100%) !important;
+  border-color: rgba(223,208,184,.12) !important;
 }
 .c-status .ov-name { font-size: 1.5rem }
 .ping {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--M); font-size: .56rem; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--c2);
+  text-transform: uppercase; color: rgba(223,208,184,.7);
 }
 .ping::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: #6fcf97; box-shadow: 0 0 7px #6fcf97; animation: ping 2s infinite;
+  background: var(--c3); box-shadow: 0 0 7px rgba(223,208,184,.6); animation: ping 2s infinite;
 }
 @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.65)} }
 .s-title { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c3); margin-top: 6px }
@@ -348,7 +349,12 @@ nav {
 .s-co    { color: var(--c3); font-weight: 600 }
 
 /* ③ EDUCATION */
-.c-edu { background: linear-gradient(155deg, rgba(57,62,70,.6) 0%, rgba(34,40,49,.8) 100%) !important }
+.c-edu {
+  background:
+    radial-gradient(ellipse at 10% 88%, rgba(148,137,121,.32) 0%, transparent 55%),
+    linear-gradient(155deg, #222831 0%, #2a2f36 100%) !important;
+  border-color: rgba(148,137,121,.16) !important;
+}
 .edu-item { margin-bottom: 10px }
 .edu-deg   { font-family: var(--F); font-weight: 700; font-size: .86rem; line-height: 1.2; color: var(--c3) }
 .edu-field { font-size: .68rem; color: var(--c2); margin: 2px 0 }
@@ -357,9 +363,11 @@ nav {
 
 /* ④ EXPERIENCE */
 .c-exp {
-  background: linear-gradient(155deg,
-    rgba(57,62,70,.75) 0%,
-    rgba(148,137,121,.15) 100%) !important;
+  background:
+    radial-gradient(ellipse at 92% 88%, rgba(223,208,184,.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 8% 8%, rgba(223,208,184,.07) 0%, transparent 40%),
+    linear-gradient(155deg, #393E46 0%, #32373f 100%) !important;
+  border-color: rgba(223,208,184,.10) !important;
 }
 .ep-item { padding: 7px 0; border-bottom: 1px solid rgba(223,208,184,.05) }
 .ep-item:last-child { border-bottom: none }
@@ -369,7 +377,10 @@ nav {
 
 /* ⑤ AWARDS */
 .c-awards {
-  background: linear-gradient(155deg, rgba(34,40,49,.9) 0%, rgba(57,62,70,.6) 100%) !important;
+  background:
+    radial-gradient(ellipse at 82% 10%, rgba(223,208,184,.20) 0%, transparent 50%),
+    linear-gradient(155deg, #1d2229 0%, #222831 100%) !important;
+  border-color: rgba(223,208,184,.13) !important;
 }
 .c-awards .ov-name { font-size: 1.4rem }
 .aw-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px }
@@ -379,9 +390,10 @@ nav {
 
 /* ⑥ SKILLS */
 .c-skills {
-  background: linear-gradient(160deg,
-    rgba(57,62,70,.7) 0%,
-    rgba(34,40,49,.85) 100%) !important;
+  background:
+    radial-gradient(ellipse at 88% 12%, rgba(148,137,121,.42) 0%, transparent 50%),
+    linear-gradient(160deg, #2c3038 0%, #393E46 50%, #26292f 100%) !important;
+  border-color: rgba(148,137,121,.22) !important;
 }
 .sk-item  { margin-bottom: 8px }
 .sk-row   { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px }
@@ -397,9 +409,11 @@ nav {
 
 /* ⑦ TOOLS */
 .c-tools {
-  background: linear-gradient(145deg,
-    rgba(34,40,49,.9) 0%,
-    rgba(57,62,70,.65) 100%) !important;
+  background:
+    radial-gradient(ellipse at 4% 96%, rgba(223,208,184,.11) 0%, transparent 45%),
+    radial-gradient(ellipse at 96% 4%, rgba(223,208,184,.08) 0%, transparent 40%),
+    linear-gradient(140deg, #1e2329 0%, #222831 100%) !important;
+  border-color: rgba(223,208,184,.09) !important;
 }
 .tools-wrap { display: flex; flex-wrap: wrap; gap: 5px; align-content: flex-start }
 .tag {
@@ -412,9 +426,10 @@ nav {
 
 /* ⑧ PROJECTS */
 .c-proj {
-  background: linear-gradient(160deg,
-    rgba(57,62,70,.7) 0%,
-    rgba(148,137,121,.18) 100%) !important;
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(148,137,121,.28) 0%, transparent 60%),
+    linear-gradient(160deg, #393E46 0%, #2a2e34 100%) !important;
+  border-color: rgba(148,137,121,.18) !important;
 }
 .pj-item { padding: 8px 0; border-bottom: 1px solid rgba(223,208,184,.05) }
 .pj-item:last-child { border-bottom: none }
@@ -423,9 +438,10 @@ nav {
 
 /* ⑨ CERTS */
 .c-cert {
-  background: linear-gradient(155deg,
-    rgba(34,40,49,.9) 0%,
-    rgba(57,62,70,.7) 100%) !important;
+  background:
+    radial-gradient(ellipse at 14% 14%, rgba(223,208,184,.22) 0%, transparent 48%),
+    linear-gradient(155deg, #222831 0%, #2b3038 100%) !important;
+  border-color: rgba(223,208,184,.14) !important;
 }
 .ci { padding: 7px 0; border-bottom: 1px solid rgba(223,208,184,.05) }
 .ci:last-child { border-bottom: none }
@@ -434,9 +450,10 @@ nav {
 
 /* ⑩ CONTACT */
 .c-contact {
-  background: linear-gradient(145deg,
-    rgba(57,62,70,.75) 0%,
-    rgba(148,137,121,.22) 100%) !important;
+  background:
+    radial-gradient(ellipse at 94% 50%, rgba(223,208,184,.13) 0%, transparent 50%),
+    linear-gradient(135deg, #2e333b 0%, #393E46 100%) !important;
+  border-color: rgba(223,208,184,.11) !important;
 }
 .ct-head  { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c3); margin-bottom: 5px }
 .ct-line  {
@@ -448,9 +465,10 @@ nav {
 
 /* ⑪ SOFT SKILLS */
 .c-edu2 {
-  background: linear-gradient(155deg,
-    rgba(148,137,121,.18) 0%,
-    rgba(57,62,70,.7) 100%) !important;
+  background:
+    radial-gradient(ellipse at 50% 92%, rgba(148,137,121,.28) 0%, transparent 55%),
+    linear-gradient(155deg, #1e2329 0%, #262b30 100%) !important;
+  border-color: rgba(148,137,121,.14) !important;
 }
 .ss-list { list-style: none; display: flex; flex-direction: column; gap: 5px }
 .ss-list li {
@@ -460,9 +478,10 @@ nav {
 
 /* ⑫ FOOTER / QUICK STATS */
 .c-footer {
-  background: linear-gradient(145deg,
-    rgba(57,62,70,.6) 0%,
-    rgba(34,40,49,.85) 100%) !important;
+  background:
+    radial-gradient(ellipse at 50% 32%, rgba(223,208,184,.11) 0%, transparent 55%),
+    linear-gradient(145deg, #393E46 0%, #222831 100%) !important;
+  border-color: rgba(223,208,184,.10) !important;
 }
 .stats-row { display: flex; align-items: center; justify-content: space-around; height: 100% }
 .stat-box { text-align: center }
