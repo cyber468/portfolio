@@ -625,22 +625,22 @@ nav {
   #bento {
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 175px;
-    gap: 12px;
+    gap: 10px;
   }
 
   /* Full-width cards */
   .c-hero    { grid-column: 1/3; grid-row: span 2 }
-  .c-exp     { grid-column: 1/3; grid-row: span 1 }
-  .c-skills  { grid-column: 1/3; grid-row: span 2 }
-  .c-tools   { grid-column: 1/3; grid-row: span 1 }
+  .c-exp     { grid-column: 1/3; grid-row: span 3 }
+  .c-skills  { grid-column: 1/3; grid-row: span 3 }
+  .c-tools   { grid-column: 1/3; grid-row: span 2 }
   .c-cert    { grid-column: 1/3; grid-row: span 2 }
   .c-contact { grid-column: 1/3; grid-row: span 1 }
 
   /* Half-width cards */
   .c-status  { grid-column: span 1; grid-row: span 1 }
   .c-edu     { grid-column: span 1; grid-row: span 1 }
-  .c-awards  { grid-column:  1/3; grid-row: span 1 }
-  .c-proj    { grid-column:  1/3; grid-row: span 1 }
+  .c-awards  { grid-column: span 1; grid-row: span 2 }
+  .c-proj    { grid-column: span 1; grid-row: span 2 }
   .c-edu2    { grid-column: span 1; grid-row: span 1 }
   .c-footer  { grid-column: span 1; grid-row: span 1 }
 
@@ -673,7 +673,7 @@ nav {
   .c-exp    { grid-row: span 3 }
   .c-skills { grid-row: span 3 }
   .ov-name  { font-size: 1.2rem }
-  .d-grid3  { grid-template-columns: 2fr }
+  .d-grid3  { grid-template-columns: 1fr }
 }
 
 /* ── MOBILE MENU ─────────────────────────────────────── */
@@ -705,6 +705,30 @@ nav {
 @media (max-width: 640px) {
   .mob-menu-btn { display: block }
 }
+
+.c-exp::after    { animation: none }
+.c-tools::after  { animation: none }
+
+
+/* ══════════════════════════════════════════════════════
+   AMBIENT BACKGROUND MOTION — canvas layers
+══════════════════════════════════════════════════════ */
+.amb {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.amb canvas {
+  position: absolute; inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Ensure card content stays above ambient layer */
+.ov  { z-index: 5 }
+.cc  { z-index: 4 }
+
 </style>
 </head>
 <body>
@@ -735,6 +759,7 @@ nav {
 
     <!-- ① HERO -->
     <div class="card c-hero">
+      <div class="amb"><canvas id="amb-hero"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// security portfolio</div>
         <div class="ov-name">Indrajit<br>Jeeva V</div>
@@ -756,6 +781,7 @@ nav {
 
     <!-- ② STATUS -->
     <div class="card c-status">
+      <div class="amb"><canvas id="amb-status"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// status</div>
         <div class="ov-name">Open to<br>Roles</div>
@@ -773,6 +799,7 @@ nav {
 
     <!-- ③ EDUCATION -->
     <div class="card c-edu">
+      <div class="amb"><canvas id="amb-edu"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// education</div>
         <div class="ov-name">Academic<br>Path</div>
@@ -794,6 +821,7 @@ nav {
 
     <!-- ④ EXPERIENCE -->
     <div class="card c-exp clickable" onclick="openPage('exp')">
+      <div class="amb"><canvas id="amb-exp"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// work history</div>
         <div class="ov-name">Experience</div>
@@ -812,6 +840,7 @@ nav {
 
     <!-- ⑤ AWARDS -->
     <div class="card c-awards clickable" onclick="openPage('awards')">
+      <div class="amb"><canvas id="amb-awards"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// recognition</div>
         <div class="ov-name">Awards</div>
@@ -828,6 +857,7 @@ nav {
 
     <!-- ⑥ SKILLS -->
     <div class="card c-skills clickable" onclick="openPage('skills')">
+      <div class="amb"><canvas id="amb-skills"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// expertise</div>
         <div class="ov-name">Technical<br>Skills</div>
@@ -847,6 +877,7 @@ nav {
 
     <!-- ⑦ TOOLS -->
     <div class="card c-tools">
+      <div class="amb"><canvas id="amb-tools"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// stack</div>
         <div class="ov-name">Tools &<br>Tech</div>
@@ -868,6 +899,7 @@ nav {
 
     <!-- ⑧ PROJECTS -->
     <div class="card c-proj clickable" onclick="openPage('projects')">
+      <div class="amb"><canvas id="amb-proj"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// builds</div>
         <div class="ov-name">Projects</div>
@@ -885,6 +917,7 @@ nav {
 
     <!-- ⑨ CERTS -->
     <div class="card c-cert clickable" onclick="openPage('cert')">
+      <div class="amb"><canvas id="amb-cert"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// credentials</div>
         <div class="ov-name">7 Certifi-<br>cations</div>
@@ -903,6 +936,7 @@ nav {
 
     <!-- ⑩ CONTACT -->
     <div class="card c-contact">
+      <div class="amb"><canvas id="amb-contact"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// connect</div>
         <div class="ov-name">Let's<br>Talk</div>
@@ -918,6 +952,7 @@ nav {
 
     <!-- ⑪ SOFT SKILLS -->
     <div class="card c-edu2">
+      <div class="amb"><canvas id="amb-edu2"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// soft skills</div>
         <div class="ov-name">People<br>Skills</div>
@@ -936,6 +971,7 @@ nav {
 
     <!-- ⑫ STATS -->
     <div class="card c-footer">
+      <div class="amb"><canvas id="amb-footer"></canvas></div>
       <div class="ov">
         <div class="ov-cat">// at a glance</div>
         <div class="ov-name">Quick<br>Stats</div>
@@ -976,6 +1012,7 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
+<script src="ambient.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
