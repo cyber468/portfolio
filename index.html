@@ -583,28 +583,127 @@ nav {
 .pfi-link:hover { background: rgba(148,137,121,.28) }
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
+
+/* ── TABLET (≤1100px) ─── */
 @media (max-width: 1100px) {
-  html,body { overflow: auto }
-  .shell { height: auto; overflow: visible; padding: 16px 20px }
-  #bento {
-    grid-template-columns: repeat(6,1fr);
-    grid-template-rows: none;
-    grid-auto-rows: 200px;
+  html, body { overflow: auto }
+  .shell {
+    height: auto; overflow: visible;
+    padding: 18px 24px 28px;
+    gap: 12px;
   }
-  .c-hero   { grid-column: 1/4; grid-row: span 2 }
-  .c-status { grid-column: 4/7; grid-row: span 1 }
-  .c-edu    { grid-column: 4/7; grid-row: span 1 }
-  .c-exp    { grid-column: 1/4; grid-row: span 2 }
-  .c-awards { grid-column: 4/7; grid-row: span 1 }
-  .c-skills { grid-column: 1/4; grid-row: span 2 }
-  .c-tools  { grid-column: 4/7; grid-row: span 2 }
-  .c-proj   { grid-column: 1/4; grid-row: span 2 }
-  .c-cert   { grid-column: 4/7; grid-row: span 2 }
-  .c-contact{ grid-column: 1/4; grid-row: span 1 }
-  .c-edu2   { grid-column: 4/6; grid-row: span 1 }
-  .c-footer { grid-column: 6/7; grid-row: span 1 }
+  #bento {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: 190px;
+  }
+  .c-hero    { grid-column: 1/4; grid-row: span 2 }
+  .c-status  { grid-column: 4/7; grid-row: span 1 }
+  .c-edu     { grid-column: 4/7; grid-row: span 1 }
+  .c-exp     { grid-column: 1/4; grid-row: span 3 }
+  .c-awards  { grid-column: 4/7; grid-row: span 2 }
+  .c-skills  { grid-column: 1/4; grid-row: span 3 }
+  .c-tools   { grid-column: 4/7; grid-row: span 2 }
+  .c-proj    { grid-column: 1/4; grid-row: span 2 }
+  .c-cert    { grid-column: 4/7; grid-row: span 2 }
+  .c-contact { grid-column: 1/4; grid-row: span 1 }
+  .c-edu2    { grid-column: 4/6; grid-row: span 1 }
+  .c-footer  { grid-column: 6/7; grid-row: span 1 }
   .nav-links { display: none }
-  #view-detail { padding: 20px }
+  #view-detail { padding: 20px 24px }
+}
+
+/* ── MOBILE (≤640px) ─── */
+@media (max-width: 640px) {
+  .shell { padding: 14px 14px 24px; gap: 10px }
+
+  /* Hamburger nav replaced with logo only */
+  nav { padding-bottom: 2px }
+  .nav-links { display: none }
+
+  /* Single column bento — each card full width, fixed height */
+  #bento {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 175px;
+    gap: 10px;
+  }
+
+  /* Full-width cards */
+  .c-hero    { grid-column: 1/3; grid-row: span 2 }
+  .c-exp     { grid-column: 1/3; grid-row: span 3 }
+  .c-skills  { grid-column: 1/3; grid-row: span 3 }
+  .c-tools   { grid-column: 1/3; grid-row: span 2 }
+  .c-cert    { grid-column: 1/3; grid-row: span 2 }
+  .c-contact { grid-column: 1/3; grid-row: span 1 }
+
+  /* Half-width cards */
+  .c-status  { grid-column: span 1; grid-row: span 1 }
+  .c-edu     { grid-column: span 1; grid-row: span 1 }
+  .c-awards  { grid-column: span 1; grid-row: span 2 }
+  .c-proj    { grid-column: span 1; grid-row: span 2 }
+  .c-edu2    { grid-column: span 1; grid-row: span 1 }
+  .c-footer  { grid-column: span 1; grid-row: span 1 }
+
+  /* Overlay text size tweak for small screens */
+  .ov-name { font-size: clamp(1.1rem, 5vw, 1.5rem) }
+  .ov { padding: 14px 16px }
+  .cc { padding: 12px 14px }
+
+  /* Hero text scaling */
+  .hero-name { font-size: clamp(1.3rem, 7vw, 2rem) }
+  .hero-sub  { font-size: .68rem }
+
+  /* Detail page */
+  #view-detail { padding: 14px 14px 28px }
+  .detail-title { font-size: clamp(1.4rem, 6vw, 2rem) }
+  .d-grid2 { grid-template-columns: 1fr }
+  .d-grid3 { grid-template-columns: 1fr 1fr }
+  .d-top   { flex-direction: column; gap: 4px }
+  .d-period { align-self: flex-start }
+}
+
+/* ── SMALL MOBILE (≤380px) ─── */
+@media (max-width: 380px) {
+  .shell { padding: 12px 10px 20px }
+  #bento { grid-template-columns: 1fr; grid-auto-rows: 160px; gap: 8px }
+  .c-hero,.c-status,.c-edu,.c-exp,.c-awards,
+  .c-skills,.c-tools,.c-proj,.c-cert,
+  .c-contact,.c-edu2,.c-footer { grid-column: 1/2; grid-row: span 1 }
+  .c-hero   { grid-row: span 2 }
+  .c-exp    { grid-row: span 3 }
+  .c-skills { grid-row: span 3 }
+  .ov-name  { font-size: 1.2rem }
+  .d-grid3  { grid-template-columns: 1fr }
+}
+
+/* ── MOBILE MENU ─────────────────────────────────────── */
+.mob-menu-btn {
+  display: none;
+  font-size: 1.2rem; background: none; border: none;
+  color: var(--c2); cursor: pointer; padding: 4px 8px;
+  transition: color .2s;
+}
+.mob-menu-btn:hover { color: var(--c3) }
+.mob-menu {
+  display: none; flex-direction: column; gap: 0;
+  background: rgba(34,40,49,.97);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 8px 0;
+  position: absolute; top: 56px; right: 14px;
+  z-index: 50; min-width: 180px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+}
+.mob-menu.open { display: flex }
+.mob-menu a {
+  font-family: var(--M); font-size: .68rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--c2);
+  padding: 11px 20px; transition: color .2s, background .2s;
+}
+.mob-menu a:hover { color: var(--c3); background: rgba(148,137,121,.08) }
+@media (max-width: 640px) {
+  .mob-menu-btn { display: block }
 }
 </style>
 </head>
@@ -612,7 +711,7 @@ nav {
 <div class="shell">
 
   <!-- NAV -->
-  <nav>
+  <nav style="position:relative">
     <div class="logo" onclick="closePage()">Welcome ,<em> Human</em></div>
     <ul class="nav-links">
       <li><a href="#" onclick="openPage('exp');return false">Experience</a></li>
@@ -621,6 +720,14 @@ nav {
       <li><a href="#" onclick="openPage('cert');return false">Certifications</a></li>
       <li><a href="#" onclick="openPage('awards');return false">Awards</a></li>
     </ul>
+    <button class="mob-menu-btn" onclick="toggleMobMenu()" aria-label="Menu">☰</button>
+    <div class="mob-menu" id="mobMenu">
+      <a href="#" onclick="openPage('exp');toggleMobMenu();return false">Experience</a>
+      <a href="#" onclick="openPage('projects');toggleMobMenu();return false">Projects</a>
+      <a href="#" onclick="openPage('skills');toggleMobMenu();return false">Skills</a>
+      <a href="#" onclick="openPage('cert');toggleMobMenu();return false">Certifications</a>
+      <a href="#" onclick="openPage('awards');toggleMobMenu();return false">Awards</a>
+    </div>
   </nav>
 
   <!-- BENTO GRID -->
@@ -803,7 +910,7 @@ nav {
       </div>
       <div class="cc">
         <div class="ct-head">Get In Touch</div>
-        <div class="ct-line"><span class="ct-icon">📧</span><a href="mailto:jeevalikestech@gmail.com">jeevalikestech@gmail.com</a></div>
+        <div class="ct-line"><span class="ct-icon">📧</span><a href="/cdn-cgi/l/email-protection#f298979784939e9b9997818697919ab2959f939b9edc919d9f"><span class="__cf_email__" data-cfemail="c6aca3a3b0a7aaafada3b5b2a3a5ae86a1aba7afaae8a5a9ab">[email&#160;protected]</span></a></div>
         <div class="ct-line"><span class="ct-icon">📱</span><span>(+91) 9597257282</span></div>
         <div class="ct-line"><span class="ct-icon">🔗</span><a href="https://linkedin.com/in/indrajitjeeva" target="_blank">linkedin.com/in/indrajitjeeva</a></div>
       </div>
@@ -857,6 +964,18 @@ nav {
   <div id="detail-wrap"></div>
 </div>
 
+<script>
+function toggleMobMenu() {
+  document.getElementById('mobMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const m = document.getElementById('mobMenu');
+  if (!m) return;
+  if (!m.contains(e.target) && !e.target.classList.contains('mob-menu-btn')) {
+    m.classList.remove('open');
+  }
+});
+</script>
 <script src="main.js"></script>
 </body>
 </html>
