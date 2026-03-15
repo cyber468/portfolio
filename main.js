@@ -151,7 +151,7 @@ if (ey) {
 const detailEl = document.getElementById('view-detail');
 const wrapEl   = document.getElementById('detail-wrap');
 
-function openPage(p) {
+function _openPage(p) {
   wrapEl.innerHTML = buildPage(p);
   detailEl.classList.add('active');
   detailEl.scrollTop = 0;
@@ -165,7 +165,7 @@ function openPage(p) {
   }
 }
 
-function closePage() {
+function _closePage() {
   detailEl.classList.remove('active');
 }
 

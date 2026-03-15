@@ -6,9 +6,6 @@
 <title>Indrajit Jeeva V</title>
 <meta name="description" content="Security Analyst · DFIR · Pentest · M2P Fintech"/>
 
-<!-- Pangea Afrikan from Fontshare (free) -->
-<link rel="preconnect" href="https://api.fontshare.com"/>
-<link href="https://api.fontshare.com/v2/css?f[]=pangea-afrikan@300,400,500,600,700,800&display=swap" rel="stylesheet"/>
 <!-- DM Mono for code labels -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -17,6 +14,78 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
 <style>
+/* ── Pangea Afrikan Trial — local font files ──────────── */
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pangea Afrikan';
+  src: url('./fonts/PangaeaAfrikanTrial-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* ═══════════════════════════════════════════════════════
    PALETTE
    #222831  deep charcoal  → page bg
@@ -329,37 +398,40 @@ nav {
 /* ② STATUS */
 .c-status {
   background:
-    radial-gradient(ellipse at 85% 12%, rgba(223,208,184,.14) 0%, transparent 50%),
-    linear-gradient(145deg, #393E46 0%, #2c3139 100%) !important;
-  border-color: rgba(223,208,184,.12) !important;
+    radial-gradient(ellipse at 90% 10%, rgba(148,137,121,.18) 0%, transparent 50%),
+    linear-gradient(145deg, #DFD0B8 0%, #cfc0a5 100%) !important;
+  border-color: rgba(148,137,121,.3) !important;
 }
-.c-status .ov-name { font-size: 1.5rem }
+.c-status .ov { background: linear-gradient(175deg, rgba(223,208,184,0) 0%, rgba(223,208,184,.6) 40%, rgba(207,192,165,.95) 100%) }
+.c-status .ov-cat { color: rgba(34,40,49,.5) }
+.c-status .ov-name { font-size: 1.5rem; color: var(--c0) }
+.c-status .ov-hint { color: rgba(34,40,49,.45) }
 .ping {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--M); font-size: .56rem; letter-spacing: .12em;
-  text-transform: uppercase; color: rgba(223,208,184,.7);
+  text-transform: uppercase; color: rgba(34,40,49,.55);
 }
 .ping::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--c3); box-shadow: 0 0 7px rgba(223,208,184,.6); animation: ping 2s infinite;
+  background: var(--c0); box-shadow: 0 0 7px rgba(34,40,49,.35); animation: ping 2s infinite;
 }
 @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.65)} }
-.s-title { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c3); margin-top: 6px }
-.s-sub   { font-size: .68rem; color: var(--c2); margin-top: 2px }
-.s-co    { color: var(--c3); font-weight: 600 }
+.s-title { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c0); margin-top: 6px }
+.s-sub   { font-size: .68rem; color: rgba(34,40,49,.55); margin-top: 2px }
+.s-co    { color: var(--c0); font-weight: 800 }
 
 /* ③ EDUCATION */
 .c-edu {
   background:
-    radial-gradient(ellipse at 10% 88%, rgba(148,137,121,.32) 0%, transparent 55%),
-    linear-gradient(155deg, #222831 0%, #2a2f36 100%) !important;
-  border-color: rgba(148,137,121,.16) !important;
+    radial-gradient(ellipse at 15% 85%, rgba(34,40,49,.08) 0%, transparent 55%),
+    linear-gradient(155deg, #f5ede0 0%, #e8ddd0 100%) !important;
+  border-color: rgba(148,137,121,.25) !important;
 }
 .edu-item { margin-bottom: 10px }
-.edu-deg   { font-family: var(--F); font-weight: 700; font-size: .86rem; line-height: 1.2; color: var(--c3) }
-.edu-field { font-size: .68rem; color: var(--c2); margin: 2px 0 }
+.edu-deg   { font-family: var(--F); font-weight: 700; font-size: .86rem; line-height: 1.2; color: var(--c0) }
+.edu-field { font-size: .68rem; color: rgba(34,40,49,.55); margin: 2px 0 }
 .edu-school{ font-size: .6rem; color: rgba(148,137,121,.55) }
-.edu-div   { height: 1px; background: var(--glass-border); margin: 10px 0 }
+.edu-div   { height: 1px; background: rgba(34,40,49,.12); margin: 10px 0 }
 
 /* ④ EXPERIENCE */
 .c-exp {
@@ -378,15 +450,15 @@ nav {
 /* ⑤ AWARDS */
 .c-awards {
   background:
-    radial-gradient(ellipse at 82% 10%, rgba(223,208,184,.20) 0%, transparent 50%),
-    linear-gradient(155deg, #1d2229 0%, #222831 100%) !important;
-  border-color: rgba(223,208,184,.13) !important;
+    radial-gradient(ellipse at 88% 8%, rgba(34,40,49,.1) 0%, transparent 50%),
+    linear-gradient(155deg, #ede0cc 0%, #ddd0bb 100%) !important;
+  border-color: rgba(148,137,121,.28) !important;
 }
 .c-awards .ov-name { font-size: 1.4rem }
 .aw-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px }
 .aw-icon  { font-size: .9rem; flex-shrink: 0; margin-top: 1px }
-.aw-title { font-family: var(--F); font-weight: 700; font-size: .76rem; color: var(--c3); line-height: 1.2 }
-.aw-sub   { font-size: .6rem; color: var(--c2); margin-top: 1px }
+.aw-title { font-family: var(--F); font-weight: 700; font-size: .76rem; color: var(--c0); line-height: 1.2 }
+.aw-sub   { font-size: .6rem; color: rgba(34,40,49,.5); margin-top: 1px }
 
 /* ⑥ SKILLS */
 .c-skills {
@@ -451,14 +523,14 @@ nav {
 /* ⑩ CONTACT */
 .c-contact {
   background:
-    radial-gradient(ellipse at 94% 50%, rgba(223,208,184,.13) 0%, transparent 50%),
-    linear-gradient(135deg, #2e333b 0%, #393E46 100%) !important;
-  border-color: rgba(223,208,184,.11) !important;
+    radial-gradient(ellipse at 92% 50%, rgba(148,137,121,.15) 0%, transparent 50%),
+    linear-gradient(135deg, #f8f0e4 0%, #ecdfc8 100%) !important;
+  border-color: rgba(148,137,121,.22) !important;
 }
-.ct-head  { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c3); margin-bottom: 5px }
+.ct-head  { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c0); margin-bottom: 5px }
 .ct-line  {
   display: flex; align-items: center; gap: 8px;
-  font-family: var(--M); font-size: .62rem; color: var(--c2); margin-top: 7px;
+  font-family: var(--M); font-size: .62rem; color: rgba(34,40,49,.55); margin-top: 7px;
 }
 .ct-line a:hover { color: var(--c3) }
 .ct-icon { font-size: .85rem }
@@ -466,22 +538,22 @@ nav {
 /* ⑪ SOFT SKILLS */
 .c-edu2 {
   background:
-    radial-gradient(ellipse at 50% 92%, rgba(148,137,121,.28) 0%, transparent 55%),
-    linear-gradient(155deg, #1e2329 0%, #262b30 100%) !important;
-  border-color: rgba(148,137,121,.14) !important;
+    radial-gradient(ellipse at 50% 88%, rgba(34,40,49,.08) 0%, transparent 55%),
+    linear-gradient(155deg, #DFD0B8 0%, #cfc0a5 100%) !important;
+  border-color: rgba(148,137,121,.3) !important;
 }
 .ss-list { list-style: none; display: flex; flex-direction: column; gap: 5px }
 .ss-list li {
-  font-size: .72rem; color: var(--c2); display: flex; gap: 7px; align-items: center;
+  font-size: .72rem; color: rgba(34,40,49,.6); display: flex; gap: 7px; align-items: center;
 }
-.ss-list li::before { content: '▸'; color: var(--c2); font-size: .6rem }
+.ss-list li::before { content: '▸'; color: rgba(34,40,49,.5); font-size: .6rem }
 
 /* ⑫ FOOTER / QUICK STATS */
 .c-footer {
   background:
-    radial-gradient(ellipse at 50% 32%, rgba(223,208,184,.11) 0%, transparent 55%),
-    linear-gradient(145deg, #393E46 0%, #222831 100%) !important;
-  border-color: rgba(223,208,184,.10) !important;
+    radial-gradient(ellipse at 50% 30%, rgba(34,40,49,.06) 0%, transparent 55%),
+    linear-gradient(145deg, #e8ddd0 0%, #d8ccbe 100%) !important;
+  border-color: rgba(148,137,121,.25) !important;
 }
 .stats-row { display: flex; align-items: center; justify-content: space-around; height: 100% }
 .stat-box { text-align: center }
@@ -489,11 +561,11 @@ nav {
   font-family: var(--F); font-weight: 800;
   font-size: clamp(1.4rem, 2vw, 2rem);
   letter-spacing: -.04em; color: var(--c3);
-  background: linear-gradient(135deg, var(--c2), var(--c3));
+  background: linear-gradient(135deg, #393E46, #222831);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.stat-lbl { font-family: var(--M); font-size: .52rem; color: var(--c2); letter-spacing: .1em; text-transform: uppercase; margin-top: 3px }
-.stat-div { width: 1px; height: 40px; background: var(--glass-border) }
+.stat-lbl { font-family: var(--M); font-size: .52rem; color: rgba(34,40,49,.5); letter-spacing: .1em; text-transform: uppercase; margin-top: 3px }
+.stat-div { width: 1px; height: 40px; background: rgba(34,40,49,.15) }
 
 /* ── DETAIL PAGE (via nav click) ────────────────────── */
 #view-detail {
@@ -728,6 +800,53 @@ nav {
 /* Ensure card content stays above ambient layer */
 .ov  { z-index: 5 }
 .cc  { z-index: 4 }
+
+.c-edu .ov { background: linear-gradient(175deg, rgba(245,237,224,0) 0%, rgba(245,237,224,.65) 40%, rgba(232,221,208,.96) 100%) }
+.c-edu .ov-cat { color: rgba(34,40,49,.45) }
+.c-edu .ov-name { color: var(--c0) }
+.c-edu .ov-hint { color: rgba(34,40,49,.4) }
+.c-edu .lbl { color: rgba(34,40,49,.38) }
+.c-awards .ov { background: linear-gradient(175deg, rgba(237,224,204,0) 0%, rgba(237,224,204,.65) 40%, rgba(221,208,187,.96) 100%) }
+.c-awards .ov-cat { color: rgba(34,40,49,.45) }
+.c-awards .ov-name { color: var(--c0) }
+.c-awards .ov-hint { color: rgba(34,40,49,.4) }
+.c-awards .lbl { color: rgba(34,40,49,.38) }
+.c-contact .ov { background: linear-gradient(175deg, rgba(248,240,228,0) 0%, rgba(248,240,228,.65) 40%, rgba(236,223,200,.96) 100%) }
+.c-contact .ov-cat { color: rgba(34,40,49,.45) }
+.c-contact .ov-name { color: var(--c0) }
+.c-contact .ov-hint { color: rgba(34,40,49,.4) }
+.c-edu2 .ov { background: linear-gradient(175deg, rgba(223,208,184,0) 0%, rgba(223,208,184,.65) 40%, rgba(207,192,165,.96) 100%) }
+.c-edu2 .ov-cat { color: rgba(34,40,49,.45) }
+.c-edu2 .ov-name { color: var(--c0) }
+.c-edu2 .ov-hint { color: rgba(34,40,49,.4) }
+.c-edu2 .lbl { color: rgba(34,40,49,.38) }
+.c-footer .ov { background: linear-gradient(175deg, rgba(232,221,208,0) 0%, rgba(232,221,208,.65) 40%, rgba(216,204,190,.96) 100%) }
+.c-footer .ov-cat { color: rgba(34,40,49,.45) }
+.c-footer .ov-name { color: var(--c0) }
+.c-footer .ov-hint { color: rgba(34,40,49,.4) }
+
+/* ── MOBILE TOUCH — tap to reveal instead of hover ──── */
+@media (hover: none), (max-width: 640px) {
+  /* Show overlay by default, content hidden */
+  .ov  { transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .3s }
+  .cc  { transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .3s }
+
+  /* .tapped class toggled by JS tap */
+  .card.tapped .ov { transform: translateY(-100%); opacity: 0; pointer-events: none }
+  .card.tapped .cc { transform: translateY(0); opacity: 1; pointer-events: auto }
+
+  /* Tap hint label */
+  .ov-hint .arr { display: none }
+  .ov-hint::before { content: '↑ tap'; }
+
+  /* Disable hover CSS for non-touch to avoid double-trigger on hybrid */
+  .card:hover .ov { transform: none; opacity: 1 }
+  .card:hover .cc { transform: translateY(100%); opacity: 0; pointer-events: none }
+
+  /* Card that is tapped overrides hover reset */
+  .card.tapped:hover .ov { transform: translateY(-100%) !important; opacity: 0 !important }
+  .card.tapped:hover .cc { transform: translateY(0) !important; opacity: 1 !important; pointer-events: auto !important }
+}
 
 </style>
 </head>
@@ -1014,5 +1133,18 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="ambient.js"></script>
 <script src="main.js"></script>
+<script>
+/* Alias main.js functions so our history wrapper can call them */
+window._openPage  = _openPage;
+window._closePage = _closePage;
+/* Re-bind nav links to use history-aware version */
+window.openPage  = function(p) { history.pushState({page:p},'','#'+p); _openPage(p); };
+window.closePage = function()  { history.pushState({page:'home'},'','#'); _closePage(); };
+/* On load, check hash */
+(function(){
+  const hash = location.hash.replace('#','');
+  if (hash && hash !== 'home') _openPage(hash);
+})();
+</script>
 </body>
 </html>
