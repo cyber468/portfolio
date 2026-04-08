@@ -64,30 +64,30 @@ const DATA = {
     {name:'IAM & Firewalls',pct:75},{name:'Network Security',pct:78},
   ],
   projects: [
-    { name:'Ransomware Readiness Assessment Tool', tag:'NCIIPC · Python',
+    { name:'Ransomware Readiness Assessment Tool - classified', tag:'NCIIPC · Python',
       desc:'Python GUI on a SIEM architecture to analyse system and employee readiness against ransomware. Built for CIIs at NCIIPC.',
       tech:['Python','PyQT5','Nmap','Qt Designer','SIEM'], link:'' },
-    { name:'Real-Time Threat Intelligence Collector', tag:'NCIIPC · Threat Intel',
+    { name:'Real-Time Threat Intelligence Collector - classified', tag:'NCIIPC · Threat Intel',
       desc:'Near-real-time threat intel aggregation for Critical Information Infrastructures — multiple feed sources surfaced to operators.',
       tech:['Python','Threat Intel APIs','SIEM','REST APIs'], link:'' },
-    { name:'Post-Incident DFIR — University Server', tag:'DFIR · Investigation',
+    { name:'Post-Incident DFIR — University Server - classified', tag:'DFIR · Investigation',
       desc:'Full investigation of a compromised live university server — DFIR analysis, DR collaboration, documentation, and hardening.',
       tech:['Kali Linux','ZAP','Nmap','SQLmap','Metasploit','Autopsy'], link:'' },
     { name:'Multi-Format Steganography Tool', tag:'Python · Security',
       desc:'Cross-platform Python tool for steganography across Text, Video, Audio and Image formats.',
-      tech:['Python','ffmpeg','OpenCV'], link:'' },
+      tech:['Python','ffmpeg','OpenCV'], link:'https://github.com/cyber468/Polyjuice' },
     { name:'Personality Prediction via ML', tag:'ML · Web App',
       desc:'ML web app enabling recruiters to predict candidate personality for efficient hiring, built with Django.',
-      tech:['Python','Django','ML','Jupyter','Figma'], link:'' },
+      tech:['Python','Django','ML','Jupyter','Figma'], link:'https://github.com/cyber468/Predicto' },
   ],
   certs: [
-    {name:'CEH v12',issuer:'EC-Council',link:''},
-    {name:'CC — Certified in Cybersecurity',issuer:'ISC²',link:''},
-    {name:'Google Cybersecurity Professional',issuer:'Google',link:''},
-    {name:'ISO/IEC 27001 Information Security Associate',issuer:'Skillfront',link:''},
-    {name:'Certified Investigator',issuer:'CSI Linux',link:''},
-    {name:'CCIO — Cybercrime Intervention Officer',issuer:'ISAC',link:''},
-    {name:'CPEW',issuer:'Cleanexit',link:''},
+    {name:'CEH v12',issuer:'EC-Council',link:'https://aspen.eccouncil.org/VerifyBadge?type=certification&a=/hZ8jC3vj7mdpqOeoCcNUK+yBNf7N6n5rDivswbZG/g='},
+    {name:'CC — Certified in Cybersecurity',issuer:'ISC²',link:'https://www.credly.com/badges/20855815-8ecc-474c-97be-93a7594bc51a/linked_in_profile'},
+    {name:'Google Cybersecurity Professional',issuer:'Google',link:'https://www.coursera.org/account/accomplishments/specialization/NEN5SZKL5PEC'},
+    {name:'ISO/IEC 27001 Information Security Associate',issuer:'Skillfront',link:'https://drive.google.com/file/d/1tPevPNZaCG74d_-8kZdLDHEl24IUXFuo/view?usp=sharing'},
+    {name:'Certified Investigator',issuer:'CSI Linux',link:'https://api.badgr.io/public/assertions/zqYdIYSjTz21XXvfY8vTVQ?identity__email=jeevaindrajit%40gmail.com'},
+    {name:'CCIO — Cybercrime Intervention Officer',issuer:'ISAC',link:'https://drive.google.com/file/d/11jygQBkCSf8frdD3BcnZw7iIr8sR5oJ1/view?usp=sharing'},
+    {name:'CPEW',issuer:'Cleanexit',link:'https://drive.google.com/file/d/11q6Oz7SalxSa-3RZw-WMVD3qwkH6woVK/view?usp=sharing'},
   ],
   awards: [
     {icon:'🥇',title:'University Rank Holder',sub:'Bharathiar University — M.Sc. Cybersecurity · 2024'},
@@ -151,10 +151,11 @@ if (ey) {
 const detailEl = document.getElementById('view-detail');
 const wrapEl   = document.getElementById('detail-wrap');
 
-function _openPage(p) {
+function openPage(p) {
   wrapEl.innerHTML = buildPage(p);
   detailEl.classList.add('active');
   detailEl.scrollTop = 0;
+  window.history.pushState(null, '', `#${p}`);
   // Animate skill bars in detail
   setTimeout(() => {
     detailEl.querySelectorAll('.sf-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
@@ -165,9 +166,12 @@ function _openPage(p) {
   }
 }
 
-function _closePage() {
+function closePage() {
   detailEl.classList.remove('active');
+  window.history.pushState(null, '', '#');
 }
+
+window.addEventListener('popstate', closePage);
 
 /* ── PAGE CONTENT BUILDERS ────────────────────────────────── */
 function buildPage(p) {
@@ -205,12 +209,12 @@ function projPage() {
   return `<h1 class="detail-title">Projects</h1>
   <p class="detail-sub">Research, tools & applications — paste GitHub links in main.js DATA.projects[n].link</p>
   ${DATA.projects.map(p => `
-    <div class="pfi">
+    <div class="pfi ${p.link ? 'clickable' : ''}" ${p.link ? `onclick="window.open('${p.link}', '_blank')"` : ''}>
       <div class="pfi-top">
         <div class="pfi-name">${p.name}</div>
         <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
           <span class="pill">${p.tag}</span>
-          ${p.link ? `<a href="${p.link}" target="_blank" class="pfi-link">View ↗</a>` : ''}
+          ${p.link ? `<a href="${p.link}" target="_blank" class="pfi-link" onclick="event.stopPropagation()">View ↗</a>` : ''}
         </div>
       </div>
       <div class="pfi-desc">${p.desc}</div>
@@ -223,18 +227,18 @@ function certPage() {
   <p class="detail-sub">Professional credentials — paste verify URLs in main.js DATA.certs[n].link</p>
   <div class="d-grid3">
     ${DATA.certs.map(c => `
-      <div class="cfd">
+      <div class="cfd ${c.link ? 'clickable' : ''}" ${c.link ? `onclick="window.open('${c.link}', '_blank')"` : ''}>
         <span class="cfd-badge">Certified</span>
         <div class="cfd-name">${c.name}</div>
         <div class="cfd-issuer">${c.issuer}</div>
-        ${c.link ? `<a href="${c.link}" target="_blank" class="cfd-btn">Verify ↗</a>` : ''}
+        ${c.link ? `<a href="${c.link}" target="_blank" class="cfd-btn" onclick="event.stopPropagation()">Verify ↗</a>` : ''}
       </div>`).join('')}
   </div>`;
 }
 
 function awardsPage() {
   return `<h1 class="detail-title">Awards & Recognition</h1>
-  <p class="detail-sub">Achievements and notable honours</p>
+  <p class="detail-sub">Achievements and Honours</p>
   ${DATA.awards.map(a => `
     <div class="d-card" style="display:flex;align-items:flex-start;gap:14px">
       <span style="font-size:1.6rem;flex-shrink:0">${a.icon}</span>
