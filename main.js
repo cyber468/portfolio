@@ -207,7 +207,7 @@ function skillsPage() {
 
 function projPage() {
   return `<h1 class="detail-title">Projects</h1>
-  <p class="detail-sub">Research, tools & applications — paste GitHub links in main.js DATA.projects[n].link</p>
+  <p class="detail-sub">Research, tools & applications</p>
   ${DATA.projects.map(p => `
     <div class="pfi ${p.link ? 'clickable' : ''}" ${p.link ? `onclick="window.open('${p.link}', '_blank')"` : ''}>
       <div class="pfi-top">
@@ -224,7 +224,7 @@ function projPage() {
 
 function certPage() {
   return `<h1 class="detail-title">Certifications</h1>
-  <p class="detail-sub">Professional credentials — paste verify URLs in main.js DATA.certs[n].link</p>
+  <p class="detail-sub">Professional credentials</p>
   <div class="d-grid3">
     ${DATA.certs.map(c => `
       <div class="cfd ${c.link ? 'clickable' : ''}" ${c.link ? `onclick="window.open('${c.link}', '_blank')"` : ''}>
