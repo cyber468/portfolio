@@ -654,6 +654,44 @@ nav {
 .pfi-link { font-family: var(--M); font-size: .52rem; padding: 3px 10px; border-radius: 99px; background: rgba(148,137,121,.15); border: 1px solid rgba(148,137,121,.28); color: var(--c3); transition: all .2s; flex-shrink: 0 }
 .pfi-link:hover { background: rgba(148,137,121,.28) }
 
+.resume-toolbar {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  margin-bottom: 16px; position: relative; z-index: 1; flex-wrap: wrap;
+}
+.resume-dl-btn, .resume-open-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--M); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 99px; transition: all .2s;
+}
+.resume-dl-btn {
+  background: rgba(148,137,121,.18); border: 1px solid rgba(148,137,121,.35); color: var(--c3);
+}
+.resume-dl-btn:hover { background: rgba(148,137,121,.32); border-color: rgba(223,208,184,.35) }
+.resume-open-btn {
+  background: transparent; border: 1px solid var(--glass-border); color: var(--c2);
+}
+.resume-open-btn:hover { color: var(--c3); border-color: rgba(223,208,184,.25) }
+.resume-viewer {
+  position: relative; z-index: 1;
+  flex: 1; min-height: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 13px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+}
+.resume-viewer iframe {
+  display: block; width: 100%;
+  height: calc(100vh - 200px);
+  min-height: 480px;
+  border: none; background: #1a1f26;
+}
+@media (max-width: 640px) {
+  .resume-viewer iframe { height: calc(100vh - 220px); min-height: 360px }
+  .resume-toolbar { justify-content: stretch }
+  .resume-dl-btn, .resume-open-btn { flex: 1; justify-content: center }
+}
+
 /* ── RESPONSIVE ─────────────────────────────────────── */
 
 /* ── TABLET (≤1100px) ─── */
@@ -862,6 +900,7 @@ nav {
       <li><a href="#" onclick="openPage('skills');return false">Skills</a></li>
       <li><a href="#" onclick="openPage('cert');return false">Certifications</a></li>
       <li><a href="#" onclick="openPage('awards');return false">Awards</a></li>
+      <li><a href="#" onclick="openPage('resume');return false">Resume</a></li>
     </ul>
     <button class="mob-menu-btn" onclick="toggleMobMenu()" aria-label="Menu">☰</button>
     <div class="mob-menu" id="mobMenu">
@@ -870,6 +909,7 @@ nav {
       <a href="#" onclick="openPage('skills');toggleMobMenu();return false">Skills</a>
       <a href="#" onclick="openPage('cert');toggleMobMenu();return false">Certifications</a>
       <a href="#" onclick="openPage('awards');toggleMobMenu();return false">Awards</a>
+      <a href="#" onclick="openPage('resume');toggleMobMenu();return false">Resume</a>
     </div>
   </nav>
 
@@ -1135,8 +1175,8 @@ document.addEventListener('click', function(e) {
 <script src="main.js"></script>
 <script>
 /* Alias main.js functions so our history wrapper can call them */
-window._openPage  = _openPage;
-window._closePage = _closePage;
+window._openPage  = openPage;
+window._closePage = closePage;
 /* Re-bind nav links to use history-aware version */
 window.openPage  = function(p) { history.pushState({page:p},'','#'+p); _openPage(p); };
 window.closePage = function()  { history.pushState({page:'home'},'','#'); _closePage(); };

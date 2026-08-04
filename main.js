@@ -1,4 +1,8 @@
 /* ── DATA ─────────────────────────────────────────────────── */
+const RESUME = {
+  file: './resume.pdf',
+  downloadName: 'Indrajit_Jeeva_V_Resume.pdf',
+};
 const DATA = {
   experience: [
     {
@@ -175,7 +179,7 @@ window.addEventListener('popstate', closePage);
 
 /* ── PAGE CONTENT BUILDERS ────────────────────────────────── */
 function buildPage(p) {
-  const map = { exp: expPage, skills: skillsPage, projects: projPage, cert: certPage, awards: awardsPage };
+  const map = { exp: expPage, skills: skillsPage, projects: projPage, cert: certPage, awards: awardsPage, resume: resumePage };
   return `<div class="detail">${(map[p] || (() => ''))()}</div>`;
 }
 
@@ -244,4 +248,16 @@ function awardsPage() {
       <span style="font-size:1.6rem;flex-shrink:0">${a.icon}</span>
       <div><div class="d-role">${a.title}</div><div style="font-size:.7rem;color:var(--c2);margin-top:3px">${a.sub}</div></div>
     </div>`).join('')}`;
+}
+
+function resumePage() {
+  return `<h1 class="detail-title">Resume</h1>
+  <p class="detail-sub">Security Analyst · DFIR · Threat Hunting · M2P Fintech</p>
+  <div class="resume-toolbar">
+    <a href="${RESUME.file}" download="${RESUME.downloadName}" class="resume-dl-btn">Download PDF ↓</a>
+    <a href="${RESUME.file}" target="_blank" rel="noopener" class="resume-open-btn">Open in new tab ↗</a>
+  </div>
+  <div class="resume-viewer">
+    <iframe src="${RESUME.file}#view=FitH" title="Indrajit Jeeva V — Resume" type="application/pdf"></iframe>
+  </div>`;
 }
