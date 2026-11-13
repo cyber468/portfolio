@@ -2,1189 +2,165 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Indrajit Jeeva V</title>
-<meta name="description" content="Security Analyst · DFIR · Threat Hunting · M2P Fintech"/>
-
-<!-- DM Mono for code labels -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Indrajit Jeeva V · Security Analyst</title>
+<meta name="description" content="Security Analyst · DFIR · Threat Hunting · M2P Fintech. Portfolio of Indrajit Jeeva V, Chennai."/>
+<meta name="theme-color" content="#efece3" media="(prefers-color-scheme: light)"/>
+<meta name="theme-color" content="#0e0e11" media="(prefers-color-scheme: dark)"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Indrajit Jeeva V · Security Analyst"/>
+<meta property="og:description" content="I find the breach, contain it, and trace how it happened. DFIR, pentesting and threat hunting at M2P Fintech."/>
+<meta name="twitter:card" content="summary"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232b3cff'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23fff'%3EIJ%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-
-<!-- GSAP for smooth animations (CDN, tiny) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-
-<style>
-/* ── Pangea Afrikan Trial — local font files ──────────── */
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-LightItalic.woff2') format('woff2');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-MediumItalic.woff2') format('woff2');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-SemiBoldItalic.woff2') format('woff2');
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Pangea Afrikan';
-  src: url('./fonts/PangaeaAfrikanTrial-BoldItalic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* ═══════════════════════════════════════════════════════
-   PALETTE
-   #222831  deep charcoal  → page bg
-   #393E46  dark slate     → card base
-   #948979  warm tan       → secondary text, muted
-   #DFD0B8  parchment      → primary text, headings
-═══════════════════════════════════════════════════════ */
-:root {
-  --c0: #222831;   /* page bg */
-  --c1: #393E46;   /* card bg / dark surface */
-  --c2: #948979;   /* muted / secondary */
-  --c3: #DFD0B8;   /* parchment / primary text */
-
-  /* Derived */
-  --glass-bg:     rgba(57, 62, 70, 0.45);
-  --glass-border: rgba(223, 208, 184, 0.10);
-  --glass-shine:  rgba(223, 208, 184, 0.04);
-  --glow-color:   rgba(148, 137, 121, 0.50);
-  --glow-strong:  rgba(223, 208, 184, 0.18);
-
-  --F: 'Pangea Afrikan', 'Plus Jakarta Sans', sans-serif;
-  --M: 'DM Mono', monospace;
-  --r: 16px;
-  --gap: 14px;
-}
-
-/* ── RESET ──────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
-html, body { height: 100%; overflow: hidden }
-body {
-  font-family: var(--F);
-  font-size: 13px;
-  color: var(--c3);
-  -webkit-font-smoothing: antialiased;
-  /* Layered gradient background — deep dark with subtle warm tones */
-  background:
-    radial-gradient(ellipse at 20% 20%, rgba(57,62,70,0.8) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(34,40,49,0.9) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 50%, rgba(148,137,121,0.06) 0%, transparent 70%),
-    linear-gradient(145deg, #1a1f26 0%, #222831 40%, #1e2329 100%);
-  background-attachment: fixed;
-}
-a { color: inherit; text-decoration: none }
-button { font-family: var(--F); cursor: pointer; border: none }
-
-/* Subtle grid overlay on body */
-body::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image:
-    linear-gradient(rgba(223,208,184,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(223,208,184,.025) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* ── SHELL ──────────────────────────────────────────── */
-.shell {
-  position: relative; z-index: 1;
-  display: flex; flex-direction: column;
-  height: 100vh;
-  /* generous margins on all sides */
-  padding: 26px 50px 30px;
-  gap: 16px;
-  overflow: hidden;
-}
-
-/* ── NAV ────────────────────────────────────────────── */
-nav {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-.logo {
-  font-family: var(--F); font-weight: 800; font-size: 1.05rem;
-  letter-spacing: -.02em; cursor: pointer; color: var(--c3);
-}
-.logo em { font-style: normal; color: var(--c2) }
-.nav-links { display: flex; gap: 24px; list-style: none }
-.nav-links a {
-  font-family: var(--M); font-size: .62rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--c2);
-  transition: color .2s; padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-}
-.nav-links a:hover { color: var(--c3); border-bottom-color: var(--c2) }
-
-/* ── HOME BENTO ─────────────────────────────────────── */
-/* Fixed viewport — all cards tile the screen exactly */
-#bento {
-  flex: 1; min-height: 0;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  gap: var(--gap);
-}
-
-/* Card placements — squarish tiles, no wide rectangles */
-.c-hero    { grid-column: 1/4;   grid-row: 1/5 }  /* 3×4 */
-.c-status  { grid-column: 4/6;   grid-row: 1/3 }  /* 2×2 */
-.c-edu     { grid-column: 6/8;   grid-row: 1/3 }  /* 2×2 */
-.c-exp     { grid-column: 8/11;  grid-row: 1/4 }  /* 3×3 */
-.c-awards  { grid-column: 11/13; grid-row: 1/3 }  /* 2×2 */
-.c-skills  { grid-column: 4/7;   grid-row: 3/7 }  /* 3×4 */
-.c-tools   { grid-column: 7/11;  grid-row: 4/7 }  /* 4×3 */
-.c-proj    { grid-column: 11/13; grid-row: 3/7 }  /* 2×4 */
-.c-cert    { grid-column: 1/4;   grid-row: 5/9 }  /* 3×4 */
-.c-contact { grid-column: 4/7;   grid-row: 7/9 }  /* 3×2 */
-.c-edu2    { grid-column: 7/9;   grid-row: 7/9 }  /* 2×2 — soft skills */
-.c-footer  { grid-column: 9/13;  grid-row: 7/9 }  /* 4×2 */
-
-/* ── GLASS CARD BASE ────────────────────────────────── */
-.card {
-  /* Glassmorphism */
-  background: var(--glass-bg);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r);
-  position: relative;
-  overflow: hidden;
-
-  /* Pointer-glow vars */
-  --mx: 50%; --my: 50%;
-
-  /* Entry: start invisible */
-  opacity: 0; transform: translateY(12px);
-  transition: opacity .5s, transform .5s, border-color .25s, box-shadow .25s;
-
-  /* Idle animation */
-  animation: idle-pulse 6s ease-in-out infinite;
-}
-.card.visible { opacity: 1; transform: translateY(0) }
-
-/* Stagger */
-.card:nth-child(1)  { transition-delay: .03s; animation-delay: 0s }
-.card:nth-child(2)  { transition-delay: .06s; animation-delay: -.5s }
-.card:nth-child(3)  { transition-delay: .09s; animation-delay: -1s }
-.card:nth-child(4)  { transition-delay: .12s; animation-delay: -1.5s }
-.card:nth-child(5)  { transition-delay: .15s; animation-delay: -2s }
-.card:nth-child(6)  { transition-delay: .18s; animation-delay: -2.5s }
-.card:nth-child(7)  { transition-delay: .21s; animation-delay: -3s }
-.card:nth-child(8)  { transition-delay: .24s; animation-delay: -3.5s }
-.card:nth-child(9)  { transition-delay: .27s; animation-delay: -4s }
-.card:nth-child(10) { transition-delay: .30s; animation-delay: -4.5s }
-.card:nth-child(11) { transition-delay: .33s; animation-delay: -5s }
-.card:nth-child(12) { transition-delay: .36s; animation-delay: -5.5s }
-
-@keyframes idle-pulse {
-  0%,100% { box-shadow: 0 2px 16px rgba(0,0,0,.3), inset 0 1px 0 var(--glass-shine) }
-  50%     { box-shadow: 0 4px 28px rgba(0,0,0,.4), 0 0 18px rgba(148,137,121,.08), inset 0 1px 0 var(--glass-shine) }
-}
-
-/* Top shine line */
-.card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(223,208,184,.12), transparent);
-  pointer-events: none; z-index: 10;
-}
-
-/* Pointer-tracked radial glow layer */
-.card::after {
-  content: '';
-  position: absolute; inset: 0; border-radius: var(--r);
-  background: radial-gradient(
-    180px circle at var(--mx) var(--my),
-    rgba(223,208,184,.10) 0%,
-    rgba(148,137,121,.04) 50%,
-    transparent 70%
-  );
-  opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 1;
-}
-.card:hover::after { opacity: 1 }
-
-/* Hover: glow ring — NO transform, NO z-index change — prevents overlap */
-.card:hover {
-  border-color: rgba(223,208,184,.22);
-  box-shadow:
-    0 0 0 1px rgba(148,137,121,.30),
-    0 0 22px rgba(148,137,121,.22),
-    0 0 50px rgba(223,208,184,.06),
-    inset 0 1px 0 rgba(223,208,184,.08);
-  animation-play-state: paused;
-}
-
-.card.clickable { cursor: pointer }
-
-/* ── OVERLAY (title layer, slides up on hover) ──────── */
-.ov {
-  position: absolute; inset: 0; z-index: 5;
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  padding: 22px 24px;
-  /* gradient from transparent top → card bg bottom */
-  background: linear-gradient(175deg,
-    rgba(34,40,49,0) 0%,
-    rgba(34,40,49,.55) 40%,
-    rgba(34,40,49,.92) 100%
-  );
-  transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .35s;
-}
-.card:hover .ov { transform: translateY(-108%); opacity: 0; pointer-events: none }
-
-.ov-cat {
-  font-family: var(--M); font-size: .55rem; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--c2); margin-bottom: 6px;
-}
-.ov-name {
-  font-family: var(--F); font-weight: 800;
-  font-size: clamp(1.3rem, 2vw, 1.9rem);
-  line-height: 1.0; letter-spacing: -.03em; color: var(--c3);
-}
-.ov-hint {
-  font-family: var(--M); font-size: .56rem; color: var(--c2);
-  margin-top: 8px; display: flex; align-items: center; gap: 5px;
-}
-.ov-hint .arr { animation: bob .8s ease-in-out infinite alternate; display: inline-block }
-@keyframes bob { from { transform: translateY(0) } to { transform: translateY(-4px) } }
-
-/* ── CONTENT layer (slides up into view on hover) ───── */
-.cc {
-  position: absolute; inset: 0; z-index: 4;
-  padding: 16px 18px;
-  display: flex; flex-direction: column;
-  overflow-y: auto; overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(148,137,121,.3) transparent;
-  transform: translateY(100%); opacity: 0;
-  transition: transform .42s cubic-bezier(.4,0,.2,1), opacity .35s;
-  pointer-events: none;
-}
-.card:hover .cc { transform: translateY(0); opacity: 1; pointer-events: auto }
-.cc::-webkit-scrollbar { width: 3px }
-.cc::-webkit-scrollbar-thumb { background: rgba(148,137,121,.35); border-radius: 99px }
-
-/* ── SHARED CARD TYPOGRAPHY ─────────────────────────── */
-.lbl {
-  font-family: var(--M); font-size: .54rem; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--c2); margin-bottom: 10px; flex-shrink: 0;
-}
-.read-more {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--M); font-size: .56rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--c2); margin-top: 10px;
-  cursor: pointer; flex-shrink: 0; transition: color .2s;
-}
-.read-more:hover { color: var(--c3) }
-.read-more::after { content: '→'; transition: transform .2s }
-.read-more:hover::after { transform: translateX(3px) }
-
-/* Pill badge */
-.pill {
-  display: inline-block; font-family: var(--M); font-size: .52rem;
-  padding: 2px 8px; border-radius: 99px;
-  background: rgba(148,137,121,.12); border: 1px solid rgba(148,137,121,.22);
-  color: var(--c2); letter-spacing: .06em;
-}
-
-/* ═══════════════════════════════════════════════════
-   INDIVIDUAL CARD STYLES
-═══════════════════════════════════════════════════ */
-
-/* ① HERO */
-.c-hero {
-  background:
-    radial-gradient(ellipse at 20% 90%, rgba(148,137,121,.25) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 10%, rgba(223,208,184,.07) 0%, transparent 50%),
-    var(--glass-bg) !important;
-}
-.c-hero .ov-name { font-size: clamp(1.5rem, 2.4vw, 2.2rem) }
-.hero-bg-dots {
-  position: absolute; inset: 0; pointer-events: none; z-index: 0;
-  background-image: radial-gradient(rgba(223,208,184,.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-.hero-inner { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; justify-content: flex-end }
-.hero-ey {
-  font-family: var(--M); font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
-  color: var(--c2); margin-bottom: 8px; min-height: 1em;
-}
-.hero-ey::after { content: '▌'; animation: blink 1s step-end infinite }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-.hero-name {
-  font-family: var(--F); font-weight: 800;
-  font-size: clamp(1.5rem, 2.2vw, 2.5rem);
-  line-height: .9; letter-spacing: -.04em; color: var(--c3);
-}
-.hero-name .g {
-  background: linear-gradient(120deg, var(--c2) 0%, var(--c3) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-sub { font-size: .72rem; color: rgba(223,208,184,.45); margin-top: 8px; line-height: 1.55 }
-.hero-sub strong { color: var(--c2); font-weight: 600 }
-.hero-btns { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap }
-.btn {
-  font-family: var(--F); font-weight: 700; font-size: .66rem;
-  padding: 7px 16px; border-radius: 99px; transition: all .2s; display: inline-block;
-}
-.btn-a {
-  background: linear-gradient(135deg, var(--c1), var(--c2));
-  color: var(--c3); border: 1px solid rgba(223,208,184,.15);
-}
-.btn-a:hover { background: linear-gradient(135deg, var(--c2), var(--c3)); color: var(--c0); box-shadow: 0 0 14px rgba(148,137,121,.4) }
-.btn-b {
-  background: transparent; color: var(--c2);
-  border: 1px solid rgba(148,137,121,.3);
-}
-.btn-b:hover { border-color: var(--c3); color: var(--c3) }
-
-/* ② STATUS */
-.c-status {
-  background:
-    radial-gradient(ellipse at 90% 10%, rgba(148,137,121,.18) 0%, transparent 50%),
-    linear-gradient(145deg, #DFD0B8 0%, #cfc0a5 100%) !important;
-  border-color: rgba(148,137,121,.3) !important;
-}
-.c-status .ov { background: linear-gradient(175deg, rgba(223,208,184,0) 0%, rgba(223,208,184,.6) 40%, rgba(207,192,165,.95) 100%) }
-.c-status .ov-cat { color: rgba(34,40,49,.5) }
-.c-status .ov-name { font-size: 1.5rem; color: var(--c0) }
-.c-status .ov-hint { color: rgba(34,40,49,.45) }
-.ping {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--M); font-size: .56rem; letter-spacing: .12em;
-  text-transform: uppercase; color: rgba(34,40,49,.55);
-}
-.ping::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--c0); box-shadow: 0 0 7px rgba(34,40,49,.35); animation: ping 2s infinite;
-}
-@keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.65)} }
-.s-title { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c0); margin-top: 6px }
-.s-sub   { font-size: .68rem; color: rgba(34,40,49,.55); margin-top: 2px }
-.s-co    { color: var(--c0); font-weight: 800 }
-
-/* ③ EDUCATION */
-.c-edu {
-  background:
-    radial-gradient(ellipse at 15% 85%, rgba(34,40,49,.08) 0%, transparent 55%),
-    linear-gradient(155deg, #f5ede0 0%, #e8ddd0 100%) !important;
-  border-color: rgba(148,137,121,.25) !important;
-}
-.edu-item { margin-bottom: 10px }
-.edu-deg   { font-family: var(--F); font-weight: 700; font-size: .86rem; line-height: 1.2; color: var(--c0) }
-.edu-field { font-size: .68rem; color: rgba(34,40,49,.55); margin: 2px 0 }
-.edu-school{ font-size: .6rem; color: rgba(148,137,121,.55) }
-.edu-div   { height: 1px; background: rgba(34,40,49,.12); margin: 10px 0 }
-
-/* ④ EXPERIENCE */
-.c-exp {
-  background:
-    radial-gradient(ellipse at 92% 88%, rgba(223,208,184,.10) 0%, transparent 45%),
-    radial-gradient(ellipse at 8% 8%, rgba(223,208,184,.07) 0%, transparent 40%),
-    linear-gradient(155deg, #393E46 0%, #32373f 100%) !important;
-  border-color: rgba(223,208,184,.10) !important;
-}
-.ep-item { padding: 7px 0; border-bottom: 1px solid rgba(223,208,184,.05) }
-.ep-item:last-child { border-bottom: none }
-.ep-role { font-family: var(--F); font-weight: 700; font-size: .8rem; color: var(--c3); line-height: 1.2 }
-.ep-co   { font-size: .62rem; color: var(--c2); margin-top: 1px }
-.ep-per  { font-family: var(--M); font-size: .54rem; color: rgba(148,137,121,.5); margin-top: 1px }
-
-/* ⑤ AWARDS */
-.c-awards {
-  background:
-    radial-gradient(ellipse at 88% 8%, rgba(34,40,49,.1) 0%, transparent 50%),
-    linear-gradient(155deg, #ede0cc 0%, #ddd0bb 100%) !important;
-  border-color: rgba(148,137,121,.28) !important;
-}
-.c-awards .ov-name { font-size: 1.4rem }
-.aw-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px }
-.aw-icon  { font-size: .9rem; flex-shrink: 0; margin-top: 1px }
-.aw-title { font-family: var(--F); font-weight: 700; font-size: .76rem; color: var(--c0); line-height: 1.2 }
-.aw-sub   { font-size: .6rem; color: rgba(34,40,49,.5); margin-top: 1px }
-
-/* ⑥ SKILLS */
-.c-skills {
-  background:
-    radial-gradient(ellipse at 88% 12%, rgba(148,137,121,.42) 0%, transparent 50%),
-    linear-gradient(160deg, #2c3038 0%, #393E46 50%, #26292f 100%) !important;
-  border-color: rgba(148,137,121,.22) !important;
-}
-.sk-item  { margin-bottom: 8px }
-.sk-row   { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px }
-.sk-name  { font-family: var(--F); font-size: .76rem; font-weight: 600; color: var(--c3) }
-.sk-pct   { font-family: var(--M); font-size: .58rem; color: var(--c2) }
-.sk-track { height: 2px; background: rgba(148,137,121,.15); border-radius: 99px; overflow: hidden }
-.sk-fill  {
-  height: 100%;
-  background: linear-gradient(90deg, var(--c2), var(--c3));
-  border-radius: 99px; width: 0;
-  transition: width 1.3s cubic-bezier(.25,.46,.45,.94);
-}
-
-/* ⑦ TOOLS */
-.c-tools {
-  background:
-    radial-gradient(ellipse at 4% 96%, rgba(223,208,184,.11) 0%, transparent 45%),
-    radial-gradient(ellipse at 96% 4%, rgba(223,208,184,.08) 0%, transparent 40%),
-    linear-gradient(140deg, #1e2329 0%, #222831 100%) !important;
-  border-color: rgba(223,208,184,.09) !important;
-}
-.tools-wrap { display: flex; flex-wrap: wrap; gap: 5px; align-content: flex-start }
-.tag {
-  font-family: var(--M); font-size: .56rem;
-  padding: 3px 9px; border-radius: 99px;
-  background: rgba(148,137,121,.08); border: 1px solid rgba(148,137,121,.18);
-  color: rgba(223,208,184,.55); transition: all .18s; cursor: default; line-height: 1.45;
-}
-.tag:hover { background: rgba(148,137,121,.2); border-color: rgba(148,137,121,.45); color: var(--c3) }
-
-/* ⑧ PROJECTS */
-.c-proj {
-  background:
-    radial-gradient(ellipse at 50% 48%, rgba(148,137,121,.28) 0%, transparent 60%),
-    linear-gradient(160deg, #393E46 0%, #2a2e34 100%) !important;
-  border-color: rgba(148,137,121,.18) !important;
-}
-.pj-item { padding: 8px 0; border-bottom: 1px solid rgba(223,208,184,.05) }
-.pj-item:last-child { border-bottom: none }
-.pj-name { font-family: var(--F); font-weight: 700; font-size: .78rem; color: var(--c3); line-height: 1.2 }
-.pj-tag  { font-family: var(--M); font-size: .54rem; color: var(--c2); margin-top: 2px }
-
-/* ⑨ CERTS */
-.c-cert {
-  background:
-    radial-gradient(ellipse at 14% 14%, rgba(223,208,184,.22) 0%, transparent 48%),
-    linear-gradient(155deg, #222831 0%, #2b3038 100%) !important;
-  border-color: rgba(223,208,184,.14) !important;
-}
-.ci { padding: 7px 0; border-bottom: 1px solid rgba(223,208,184,.05) }
-.ci:last-child { border-bottom: none }
-.ci-name   { font-family: var(--F); font-weight: 700; font-size: .78rem; color: var(--c3); line-height: 1.2 }
-.ci-issuer { font-size: .6rem; color: var(--c2); margin-top: 1px }
-
-/* ⑩ CONTACT */
-.c-contact {
-  background:
-    radial-gradient(ellipse at 92% 50%, rgba(148,137,121,.15) 0%, transparent 50%),
-    linear-gradient(135deg, #f8f0e4 0%, #ecdfc8 100%) !important;
-  border-color: rgba(148,137,121,.22) !important;
-}
-.ct-head  { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c0); margin-bottom: 5px }
-.ct-line  {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--M); font-size: .62rem; color: rgba(34,40,49,.55); margin-top: 7px;
-}
-.ct-line a:hover { color: var(--c3) }
-.ct-icon { font-size: .85rem }
-
-/* ⑪ SOFT SKILLS */
-.c-edu2 {
-  background:
-    radial-gradient(ellipse at 50% 88%, rgba(34,40,49,.08) 0%, transparent 55%),
-    linear-gradient(155deg, #DFD0B8 0%, #cfc0a5 100%) !important;
-  border-color: rgba(148,137,121,.3) !important;
-}
-.ss-list { list-style: none; display: flex; flex-direction: column; gap: 5px }
-.ss-list li {
-  font-size: .72rem; color: rgba(34,40,49,.6); display: flex; gap: 7px; align-items: center;
-}
-.ss-list li::before { content: '▸'; color: rgba(34,40,49,.5); font-size: .6rem }
-
-/* ⑫ FOOTER / QUICK STATS */
-.c-footer {
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(34,40,49,.06) 0%, transparent 55%),
-    linear-gradient(145deg, #e8ddd0 0%, #d8ccbe 100%) !important;
-  border-color: rgba(148,137,121,.25) !important;
-}
-.stats-row { display: flex; align-items: center; justify-content: space-around; height: 100% }
-.stat-box { text-align: center }
-.stat-num {
-  font-family: var(--F); font-weight: 800;
-  font-size: clamp(1.4rem, 2vw, 2rem);
-  letter-spacing: -.04em; color: var(--c3);
-  background: linear-gradient(135deg, #393E46, #222831);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.stat-lbl { font-family: var(--M); font-size: .52rem; color: rgba(34,40,49,.5); letter-spacing: .1em; text-transform: uppercase; margin-top: 3px }
-.stat-div { width: 1px; height: 40px; background: rgba(34,40,49,.15) }
-
-/* ── DETAIL PAGE (via nav click) ────────────────────── */
-#view-detail {
-  position: fixed; inset: 0; z-index: 100;
-  background:
-    radial-gradient(ellipse at 30% 30%, rgba(57,62,70,.7) 0%, transparent 50%),
-    linear-gradient(145deg, #1a1f26 0%, #222831 100%);
-  display: none; flex-direction: column;
-  padding: 24px 40px 32px;
-  overflow-y: auto;
-}
-#view-detail.active { display: flex }
-#view-detail::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(223,208,184,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(223,208,184,.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.detail-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-shrink: 0; margin-bottom: 28px; position: relative; z-index: 1;
-}
-.back-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--M); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--c2); background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border); border-radius: 99px; padding: 6px 14px;
-  transition: all .2s;
-}
-.back-btn:hover { color: var(--c3); border-color: rgba(223,208,184,.25) }
-.detail-title {
-  font-family: var(--F); font-weight: 800;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  letter-spacing: -.03em; color: var(--c3);
-  margin-bottom: 4px; position: relative; z-index: 1;
-}
-.detail-sub { font-size: .76rem; color: var(--c2); margin-bottom: 26px; position: relative; z-index: 1 }
-
-.d-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: 13px; padding: 18px 20px; margin-bottom: 10px;
-  transition: border-color .2s, box-shadow .2s; position: relative; z-index: 1;
-}
-.d-card:hover { border-color: rgba(148,137,121,.35); box-shadow: 0 0 18px rgba(148,137,121,.12) }
-.d-role   { font-family: var(--F); font-weight: 800; font-size: .95rem; color: var(--c3) }
-.d-co     { font-size: .72rem; color: var(--c2); font-weight: 600; margin: 2px 0 8px }
-.d-top    { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 5px }
-.d-period { font-family: var(--M); font-size: .56rem; color: rgba(148,137,121,.55); padding: 2px 8px; background: rgba(148,137,121,.08); border-radius: 99px; flex-shrink: 0 }
-.d-ul     { list-style: none; display: flex; flex-direction: column; gap: 5px }
-.d-ul li  { display: flex; gap: 8px; font-size: .72rem; color: var(--c2); line-height: 1.55 }
-.d-ul li::before { content:''; width:3px; height:3px; border-radius:50%; background:var(--c2); flex-shrink:0; margin-top:6px }
-.d-tags   { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px }
-.d-tag    { font-family: var(--M); font-size: .52rem; padding: 2px 7px; border-radius: 4px; background: rgba(148,137,121,.08); border: 1px solid rgba(148,137,121,.18); color: var(--c2) }
-
-.d-grid2  { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 10px; position: relative; z-index: 1 }
-.d-grid3  { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 9px; position: relative; z-index: 1 }
-
-.sf { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 10px; padding: 12px 14px; transition: border-color .2s }
-.sf:hover { border-color: rgba(148,137,121,.35) }
-.sf-row { display: flex; justify-content: space-between; margin-bottom: 6px }
-.sf-name { font-family: var(--F); font-weight: 600; font-size: .76rem; color: var(--c3) }
-.sf-pct  { font-family: var(--M); font-size: .6rem; color: var(--c2) }
-.sf-track{ height: 2px; background: rgba(148,137,121,.12); border-radius: 99px; overflow: hidden }
-.sf-fill { height: 100%; background: linear-gradient(90deg, var(--c2), var(--c3)); border-radius: 99px; width: 0; transition: width 1.3s cubic-bezier(.25,.46,.45,.94) }
-
-.cfd { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 10px; padding: 13px 15px; transition: border-color .2s }
-.cfd:hover { border-color: rgba(148,137,121,.35) }
-.cfd-badge { font-family: var(--M); font-size: .48rem; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 6px; background: rgba(148,137,121,.1); color: var(--c2); border: 1px solid rgba(148,137,121,.2) }
-.cfd-name { font-family: var(--F); font-weight: 700; font-size: .78rem; line-height: 1.2; color: var(--c3); margin-bottom: 2px }
-.cfd-issuer { font-size: .6rem; color: var(--c2) }
-.cfd-btn { display: inline-block; margin-top: 8px; font-family: var(--M); font-size: .5rem; padding: 3px 9px; border-radius: 99px; background: rgba(148,137,121,.15); border: 1px solid rgba(148,137,121,.3); color: var(--c3); transition: all .2s }
-.cfd-btn:hover { background: rgba(148,137,121,.3) }
-
-.pfi { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px 18px; margin-bottom: 10px; transition: border-color .2s; position: relative; z-index: 1 }
-.pfi:hover { border-color: rgba(148,137,121,.35) }
-.pfi-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 6px }
-.pfi-name { font-family: var(--F); font-weight: 800; font-size: .9rem; color: var(--c3) }
-.pfi-desc { font-size: .71rem; color: var(--c2); line-height: 1.6; margin-bottom: 9px }
-.pfi-tech { display: flex; flex-wrap: wrap; gap: 4px }
-.pfi-tech span { font-family: var(--M); font-size: .52rem; padding: 2px 7px; border-radius: 4px; background: rgba(148,137,121,.08); border: 1px solid rgba(148,137,121,.18); color: var(--c2) }
-.pfi-link { font-family: var(--M); font-size: .52rem; padding: 3px 10px; border-radius: 99px; background: rgba(148,137,121,.15); border: 1px solid rgba(148,137,121,.28); color: var(--c3); transition: all .2s; flex-shrink: 0 }
-.pfi-link:hover { background: rgba(148,137,121,.28) }
-
-.resume-toolbar {
-  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
-  margin-bottom: 16px; position: relative; z-index: 1; flex-wrap: wrap;
-}
-.resume-dl-btn, .resume-open-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--M); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase;
-  padding: 8px 14px; border-radius: 99px; transition: all .2s;
-}
-.resume-dl-btn {
-  background: rgba(148,137,121,.18); border: 1px solid rgba(148,137,121,.35); color: var(--c3);
-}
-.resume-dl-btn:hover { background: rgba(148,137,121,.32); border-color: rgba(223,208,184,.35) }
-.resume-open-btn {
-  background: transparent; border: 1px solid var(--glass-border); color: var(--c2);
-}
-.resume-open-btn:hover { color: var(--c3); border-color: rgba(223,208,184,.25) }
-.resume-viewer {
-  position: relative; z-index: 1;
-  flex: 1; min-height: 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: 13px; overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,.25);
-}
-.resume-viewer iframe {
-  display: block; width: 100%;
-  height: calc(100vh - 200px);
-  min-height: 480px;
-  border: none; background: #1a1f26;
-}
-@media (max-width: 640px) {
-  .resume-viewer iframe { height: calc(100vh - 220px); min-height: 360px }
-  .resume-toolbar { justify-content: stretch }
-  .resume-dl-btn, .resume-open-btn { flex: 1; justify-content: center }
-}
-
-/* ── RESPONSIVE ─────────────────────────────────────── */
-
-/* ── TABLET (≤1100px) ─── */
-@media (max-width: 1100px) {
-  html, body { overflow: auto }
-  .shell {
-    height: auto; overflow: visible;
-    padding: 18px 24px 28px;
-    gap: 12px;
-  }
-  #bento {
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: none;
-    grid-auto-rows: 190px;
-  }
-  .c-hero    { grid-column: 1/4; grid-row: span 2 }
-  .c-status  { grid-column: 4/7; grid-row: span 1 }
-  .c-edu     { grid-column: 4/7; grid-row: span 1 }
-  .c-exp     { grid-column: 1/4; grid-row: span 3 }
-  .c-awards  { grid-column: 4/7; grid-row: span 2 }
-  .c-skills  { grid-column: 1/4; grid-row: span 3 }
-  .c-tools   { grid-column: 4/7; grid-row: span 2 }
-  .c-proj    { grid-column: 1/4; grid-row: span 2 }
-  .c-cert    { grid-column: 4/7; grid-row: span 2 }
-  .c-contact { grid-column: 1/4; grid-row: span 1 }
-  .c-edu2    { grid-column: 4/6; grid-row: span 1 }
-  .c-footer  { grid-column: 6/7; grid-row: span 1 }
-  .nav-links { display: none }
-  #view-detail { padding: 20px 24px }
-}
-
-/* ── MOBILE (≤640px) ─── */
-@media (max-width: 640px) {
-  .shell { padding: 14px 14px 24px; gap: 10px }
-
-  /* Hamburger nav replaced with logo only */
-  nav { padding-bottom: 2px }
-  .nav-links { display: none }
-
-  /* Single column bento — each card full width, fixed height */
-  #bento {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 175px;
-    gap: 10px;
-  }
-
-  /* Full-width cards */
-  .c-hero    { grid-column: 1/3; grid-row: span 2 }
-  .c-exp     { grid-column: 1/3; grid-row: span 3 }
-  .c-skills  { grid-column: 1/3; grid-row: span 3 }
-  .c-tools   { grid-column: 1/3; grid-row: span 2 }
-  .c-cert    { grid-column: 1/3; grid-row: span 2 }
-  .c-contact { grid-column: 1/3; grid-row: span 1 }
-
-  /* Half-width cards */
-  .c-status  { grid-column: span 1; grid-row: span 1 }
-  .c-edu     { grid-column: span 1; grid-row: span 1 }
-  .c-awards  { grid-column: span 1; grid-row: span 2 }
-  .c-proj    { grid-column: span 1; grid-row: span 2 }
-  .c-edu2    { grid-column: span 1; grid-row: span 1 }
-  .c-footer  { grid-column: span 1; grid-row: span 1 }
-
-  /* Overlay text size tweak for small screens */
-  .ov-name { font-size: clamp(1.1rem, 5vw, 1.5rem) }
-  .ov { padding: 14px 16px }
-  .cc { padding: 12px 14px }
-
-  /* Hero text scaling */
-  .hero-name { font-size: clamp(1.3rem, 7vw, 2rem) }
-  .hero-sub  { font-size: .68rem }
-
-  /* Detail page */
-  #view-detail { padding: 14px 14px 28px }
-  .detail-title { font-size: clamp(1.4rem, 6vw, 2rem) }
-  .d-grid2 { grid-template-columns: 1fr }
-  .d-grid3 { grid-template-columns: 1fr 1fr }
-  .d-top   { flex-direction: column; gap: 4px }
-  .d-period { align-self: flex-start }
-}
-
-/* ── SMALL MOBILE (≤380px) ─── */
-@media (max-width: 380px) {
-  .shell { padding: 12px 10px 20px }
-  #bento { grid-template-columns: 1fr; grid-auto-rows: 160px; gap: 8px }
-  .c-hero,.c-status,.c-edu,.c-exp,.c-awards,
-  .c-skills,.c-tools,.c-proj,.c-cert,
-  .c-contact,.c-edu2,.c-footer { grid-column: 1/2; grid-row: span 1 }
-  .c-hero   { grid-row: span 2 }
-  .c-exp    { grid-row: span 3 }
-  .c-skills { grid-row: span 3 }
-  .ov-name  { font-size: 1.2rem }
-  .d-grid3  { grid-template-columns: 1fr }
-}
-
-/* ── MOBILE MENU ─────────────────────────────────────── */
-.mob-menu-btn {
-  display: none;
-  font-size: 1.2rem; background: none; border: none;
-  color: var(--c2); cursor: pointer; padding: 4px 8px;
-  transition: color .2s;
-}
-.mob-menu-btn:hover { color: var(--c3) }
-.mob-menu {
-  display: none; flex-direction: column; gap: 0;
-  background: rgba(34,40,49,.97);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: 12px;
-  padding: 8px 0;
-  position: absolute; top: 56px; right: 14px;
-  z-index: 50; min-width: 180px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
-}
-.mob-menu.open { display: flex }
-.mob-menu a {
-  font-family: var(--M); font-size: .68rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--c2);
-  padding: 11px 20px; transition: color .2s, background .2s;
-}
-.mob-menu a:hover { color: var(--c3); background: rgba(148,137,121,.08) }
-@media (max-width: 640px) {
-  .mob-menu-btn { display: block }
-}
-
-.c-exp::after    { animation: none }
-.c-tools::after  { animation: none }
-
-
-/* ══════════════════════════════════════════════════════
-   AMBIENT BACKGROUND MOTION — canvas layers
-══════════════════════════════════════════════════════ */
-.amb {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none; z-index: 0;
-  border-radius: var(--r);
-  overflow: hidden;
-}
-.amb canvas {
-  position: absolute; inset: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-/* Ensure card content stays above ambient layer */
-.ov  { z-index: 5 }
-.cc  { z-index: 4 }
-
-.c-edu .ov { background: linear-gradient(175deg, rgba(245,237,224,0) 0%, rgba(245,237,224,.65) 40%, rgba(232,221,208,.96) 100%) }
-.c-edu .ov-cat { color: rgba(34,40,49,.45) }
-.c-edu .ov-name { color: var(--c0) }
-.c-edu .ov-hint { color: rgba(34,40,49,.4) }
-.c-edu .lbl { color: rgba(34,40,49,.38) }
-.c-awards .ov { background: linear-gradient(175deg, rgba(237,224,204,0) 0%, rgba(237,224,204,.65) 40%, rgba(221,208,187,.96) 100%) }
-.c-awards .ov-cat { color: rgba(34,40,49,.45) }
-.c-awards .ov-name { color: var(--c0) }
-.c-awards .ov-hint { color: rgba(34,40,49,.4) }
-.c-awards .lbl { color: rgba(34,40,49,.38) }
-.c-contact .ov { background: linear-gradient(175deg, rgba(248,240,228,0) 0%, rgba(248,240,228,.65) 40%, rgba(236,223,200,.96) 100%) }
-.c-contact .ov-cat { color: rgba(34,40,49,.45) }
-.c-contact .ov-name { color: var(--c0) }
-.c-contact .ov-hint { color: rgba(34,40,49,.4) }
-.c-edu2 .ov { background: linear-gradient(175deg, rgba(223,208,184,0) 0%, rgba(223,208,184,.65) 40%, rgba(207,192,165,.96) 100%) }
-.c-edu2 .ov-cat { color: rgba(34,40,49,.45) }
-.c-edu2 .ov-name { color: var(--c0) }
-.c-edu2 .ov-hint { color: rgba(34,40,49,.4) }
-.c-edu2 .lbl { color: rgba(34,40,49,.38) }
-.c-footer .ov { background: linear-gradient(175deg, rgba(232,221,208,0) 0%, rgba(232,221,208,.65) 40%, rgba(216,204,190,.96) 100%) }
-.c-footer .ov-cat { color: rgba(34,40,49,.45) }
-.c-footer .ov-name { color: var(--c0) }
-.c-footer .ov-hint { color: rgba(34,40,49,.4) }
-
-/* ── MOBILE TOUCH — tap to reveal instead of hover ──── */
-@media (hover: none), (max-width: 640px) {
-  /* Show overlay by default, content hidden */
-  .ov  { transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .3s }
-  .cc  { transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .3s }
-
-  /* .tapped class toggled by JS tap */
-  .card.tapped .ov { transform: translateY(-100%); opacity: 0; pointer-events: none }
-  .card.tapped .cc { transform: translateY(0); opacity: 1; pointer-events: auto }
-
-  /* Tap hint label */
-  .ov-hint .arr { display: none }
-  .ov-hint::before { content: '↑ tap'; }
-
-  /* Disable hover CSS for non-touch to avoid double-trigger on hybrid */
-  .card:hover .ov { transform: none; opacity: 1 }
-  .card:hover .cc { transform: translateY(100%); opacity: 0; pointer-events: none }
-
-  /* Card that is tapped overrides hover reset */
-  .card.tapped:hover .ov { transform: translateY(-100%) !important; opacity: 0 !important }
-  .card.tapped:hover .cc { transform: translateY(0) !important; opacity: 1 !important; pointer-events: auto !important }
-}
-
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<div class="shell">
+<noscript><div class="ns">This portfolio needs JavaScript to list experience, projects and credentials. You can still <a href="resume.pdf">open the resume PDF</a> or visit <a href="https://linkedin.com/in/indrajitjeeva">LinkedIn</a>.</div></noscript>
 
-  <!-- NAV -->
-  <nav style="position:relative">
-    <div class="logo" onclick="closePage()">Welcome ,<em> Human</em></div>
-    <ul class="nav-links">
-      <li><a href="#" onclick="openPage('exp');return false">Experience</a></li>
-      <li><a href="#" onclick="openPage('projects');return false">Projects</a></li>
-      <li><a href="#" onclick="openPage('skills');return false">Skills</a></li>
-      <li><a href="#" onclick="openPage('cert');return false">Certifications</a></li>
-      <li><a href="#" onclick="openPage('awards');return false">Awards</a></li>
-      <li><a href="#" onclick="openPage('resume');return false">Resume</a></li>
-    </ul>
-    <button class="mob-menu-btn" onclick="toggleMobMenu()" aria-label="Menu">☰</button>
-    <div class="mob-menu" id="mobMenu">
-      <a href="#" onclick="openPage('exp');toggleMobMenu();return false">Experience</a>
-      <a href="#" onclick="openPage('projects');toggleMobMenu();return false">Projects</a>
-      <a href="#" onclick="openPage('skills');toggleMobMenu();return false">Skills</a>
-      <a href="#" onclick="openPage('cert');toggleMobMenu();return false">Certifications</a>
-      <a href="#" onclick="openPage('awards');toggleMobMenu();return false">Awards</a>
-      <a href="#" onclick="openPage('resume');toggleMobMenu();return false">Resume</a>
-    </div>
-  </nav>
+<div class="bar" id="bar" aria-hidden="true"></div>
+<div class="cur" id="cur" aria-hidden="true"><b></b><i></i></div>
 
-  <!-- BENTO GRID -->
-  <div id="bento">
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="Indrajit Jeeva V, back to top">Indrajit<span class="ser" style="color:var(--blue)"> Jeeva V</span></a>
+  <a class="l" href="#work">Work</a><a class="l" href="#projects">Projects</a><a class="l" href="#skills">Skills</a><a class="l" href="#proof">Proof</a><a class="l" href="#resume">Resume</a>
+  <button class="ib" id="theme" type="button" aria-label="Switch colour theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  <button class="ib menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</header>
 
-    <!-- ① HERO -->
-    <div class="card c-hero">
-      <div class="amb"><canvas id="amb-hero"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// security portfolio</div>
-        <div class="ov-name">Indrajit<br>Jeeva V</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover to reveal</div>
-      </div>
-      <div class="cc">
-        <div class="hero-bg-dots"></div>
-        <div class="hero-inner">
-          <div class="hero-ey">// Security Analyst</div>
-          <h1 class="hero-name">INDRAJIT<br><span class="g">JEEVA V</span></h1>
-          <p class="hero-sub">At <strong>M2P Fintech</strong> · DFIR · Pentest<br>Chennai, Tamil Nadu</p>
-          <div class="hero-btns">
-            <a href="#" onclick="openPage('exp');return false" class="btn btn-a">View Work</a>
-            <a href="https://linkedin.com/in/indrajitjeeva" target="_blank" class="btn btn-b">LinkedIn ↗</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ② STATUS -->
-    <div class="card c-status">
-      <div class="amb"><canvas id="amb-status"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// status</div>
-        <div class="ov-name">Open to<br>Roles</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="ping">Available Now</div>
-        <div style="margin-top:auto">
-          <div class="s-title">Security Analyst</div>
-          <div class="s-sub"><span class="s-co">M2P Fintech</span> · Current</div>
-          <div class="s-sub" style="margin-top:6px">5 orgs · DFIR · Pentest</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ③ EDUCATION -->
-    <div class="card c-edu">
-      <div class="amb"><canvas id="amb-edu"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// education</div>
-        <div class="ov-name">Academic<br>Path</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// education</div>
-        <div class="edu-item">
-          <div class="edu-deg">M.Sc. Cybersecurity</div>
-          <div class="edu-field">Rank Holder · Bharathiar University · 2024</div>
-        </div>
-        <div class="edu-div"></div>
-        <div class="edu-item">
-          <div class="edu-deg">B.Sc. Computer Science</div>
-          <div class="edu-field">First Class Distinction · 2022</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ④ EXPERIENCE -->
-    <div class="card c-exp clickable" onclick="openPage('exp')">
-      <div class="amb"><canvas id="amb-exp"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// work history</div>
-        <div class="ov-name">Experience</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;click for full details</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// 5 roles</div>
-        <div class="ep-item"><div class="ep-role">Security Analyst</div><div class="ep-co">M2P Fintech</div><div class="ep-per">Oct 2024 – Present</div></div>
-        <div class="ep-item"><div class="ep-role">Cyber Security Intern</div><div class="ep-co">NCIIPC · Delhi</div><div class="ep-per">May – Oct 2024</div></div>
-        <div class="ep-item"><div class="ep-role">Digital Forensics Intern</div><div class="ep-co">ISAC · Bangalore</div><div class="ep-per">Mar – May 2024</div></div>
-        <div class="ep-item"><div class="ep-role">Security Researcher</div><div class="ep-co">Forefend Labs</div><div class="ep-per">Jan – Mar 2024</div></div>
-        <div class="ep-item"><div class="ep-role">First Response Officer</div><div class="ep-co">Cyber Crime Police</div><div class="ep-per">Aug – Sep 2023</div></div>
-        <span class="read-more">Full details</span>
-      </div>
-    </div>
-
-    <!-- ⑤ AWARDS -->
-    <div class="card c-awards clickable" onclick="openPage('awards')">
-      <div class="amb"><canvas id="amb-awards"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// recognition</div>
-        <div class="ov-name">Awards</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// honours</div>
-        <div class="aw-item"><div class="aw-icon">🥇</div><div><div class="aw-title">University Rank Holder</div><div class="aw-sub">Bharathiar University · 2024</div></div></div>
-        <div class="aw-item"><div class="aw-icon">🏆</div><div><div class="aw-title">SIH 2023 Winner</div><div class="aw-sub">National · Govt. of India</div></div></div>
-        <div class="aw-item"><div class="aw-icon">🎖️</div><div><div class="aw-title">NSD Cadet</div><div class="aw-sub">National Security Database</div></div></div>
-        <span class="read-more">View all</span>
-      </div>
-    </div>
-
-    <!-- ⑥ SKILLS -->
-    <div class="card c-skills clickable" onclick="openPage('skills')">
-      <div class="amb"><canvas id="amb-skills"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// expertise</div>
-        <div class="ov-name">Technical<br>Skills</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// top skills</div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Digital Forensics & IR</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Penetration Testing</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Memory Forensics</span><span class="sk-pct">87%</span></div><div class="sk-track"><div class="sk-fill" data-w="87"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Python Dev</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">Vuln Assessment</span><span class="sk-pct">86%</span></div><div class="sk-track"><div class="sk-fill" data-w="86"></div></div></div>
-        <div class="sk-item"><div class="sk-row"><span class="sk-name">SIEM</span><span class="sk-pct">82%</span></div><div class="sk-track"><div class="sk-fill" data-w="82"></div></div></div>
-        <span class="read-more">All 12 skills</span>
-      </div>
-    </div>
-
-    <!-- ⑦ TOOLS -->
-    <div class="card c-tools">
-      <div class="amb"><canvas id="amb-tools"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// stack</div>
-        <div class="ov-name">Tools &<br>Tech</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// tools_&_tech</div>
-        <div class="tools-wrap">
-          <span class="tag">Python</span><span class="tag">Kali Linux</span><span class="tag">Burp Suite</span>
-          <span class="tag">Metasploit</span><span class="tag">Nmap</span><span class="tag">ZAP</span>
-          <span class="tag">SQLmap</span><span class="tag">Nessus</span><span class="tag">Wazuh</span>
-          <span class="tag">Splunk</span><span class="tag">Autopsy</span><span class="tag">Volatility</span>
-          <span class="tag">FTK</span><span class="tag">Sleuthkit</span><span class="tag">Dirbuster</span>
-          <span class="tag">OPNsense</span><span class="tag">Django</span><span class="tag">PyQT5</span>
-          <span class="tag">OpenCV</span><span class="tag">ffmpeg</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ⑧ PROJECTS -->
-    <div class="card c-proj clickable" onclick="openPage('projects')">
-      <div class="amb"><canvas id="amb-proj"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// builds</div>
-        <div class="ov-name">Projects</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;click to explore</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// 5 projects</div>
-        <div class="pj-item"><div class="pj-name">Ransomware Readiness Tool</div><div class="pj-tag">Python · PyQT5 · SIEM</div></div>
-        <div class="pj-item"><div class="pj-name">Threat Intel Collector</div><div class="pj-tag">Python · REST APIs</div></div>
-        <div class="pj-item"><div class="pj-name">DFIR — University Server</div><div class="pj-tag">Kali · Autopsy · Metasploit</div></div>
-        <div class="pj-item"><div class="pj-name">Steganography Tool</div><div class="pj-tag">Python · ffmpeg · OpenCV</div></div>
-        <span class="read-more">View all</span>
-      </div>
-    </div>
-
-    <!-- ⑨ CERTS -->
-    <div class="card c-cert clickable" onclick="openPage('cert')">
-      <div class="amb"><canvas id="amb-cert"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// credentials</div>
-        <div class="ov-name">7 Certifi-<br>cations</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;click to verify</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// certifications</div>
-        <div class="ci"><div class="ci-name">CEH v12</div><div class="ci-issuer">EC-Council</div></div>
-        <div class="ci"><div class="ci-name">CC · ISC²</div><div class="ci-issuer">ISC²</div></div>
-        <div class="ci"><div class="ci-name">Google Cybersecurity</div><div class="ci-issuer">Google</div></div>
-        <div class="ci"><div class="ci-name">ISO/IEC 27001</div><div class="ci-issuer">Skillfront</div></div>
-        <div class="ci"><div class="ci-name">CCIO · ISAC</div><div class="ci-issuer">ISAC</div></div>
-        <span class="read-more">View all 7</span>
-      </div>
-    </div>
-
-    <!-- ⑩ CONTACT -->
-    <div class="card c-contact">
-      <div class="amb"><canvas id="amb-contact"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// connect</div>
-        <div class="ov-name">Let's<br>Talk</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="ct-head">Get In Touch</div>
-        <div class="ct-line"><span class="ct-icon">📧</span><a href="/cdn-cgi/l/email-protection#f298979784939e9b9997818697919ab2959f939b9edc919d9f"><span class="__cf_email__" data-cfemail="c6aca3a3b0a7aaafada3b5b2a3a5ae86a1aba7afaae8a5a9ab">[email&#160;protected]</span></a></div>
-        <div class="ct-line"><span class="ct-icon">📱</span><span>(+91) 9597257282</span></div>
-        <div class="ct-line"><span class="ct-icon">🔗</span><a href="https://linkedin.com/in/indrajitjeeva" target="_blank">linkedin.com/in/indrajitjeeva</a></div>
-      </div>
-    </div>
-
-    <!-- ⑪ SOFT SKILLS -->
-    <div class="card c-edu2">
-      <div class="amb"><canvas id="amb-edu2"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// soft skills</div>
-        <div class="ov-name">People<br>Skills</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc">
-        <div class="lbl">// soft skills</div>
-        <ul class="ss-list">
-          <li>Presentation Skills</li>
-          <li>Communication</li>
-          <li>Time Management</li>
-          <li>Tenacity</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ⑫ STATS -->
-    <div class="card c-footer">
-      <div class="amb"><canvas id="amb-footer"></canvas></div>
-      <div class="ov">
-        <div class="ov-cat">// at a glance</div>
-        <div class="ov-name">Quick<br>Stats</div>
-        <div class="ov-hint"><span class="arr">↑</span>&nbsp;hover</div>
-      </div>
-      <div class="cc" style="justify-content:center">
-        <div class="stats-row">
-          <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Orgs</div></div>
-          <div class="stat-div"></div>
-          <div class="stat-box"><div class="stat-num">7</div><div class="stat-lbl">Certs</div></div>
-          <div class="stat-div"></div>
-          <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Projects</div></div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /bento -->
-</div><!-- /shell -->
-
-<!-- DETAIL OVERLAY PAGE -->
-<div id="view-detail">
-  <div class="detail-nav">
-    <button class="back-btn" onclick="closePage()">← Back</button>
-    <div class="logo" style="cursor:default">Indrajit <em style="font-style:normal;color:var(--c2)">Jeeva</em></div>
-  </div>
-  <div id="detail-wrap"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="ib sheet-x" id="sheetX" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <a href="#work">Work <span>01</span></a>
+  <a href="#projects">Projects <span>02</span></a>
+  <a href="#skills">Skills <span>03</span></a>
+  <a href="#proof">Proof <span>04</span></a>
+  <a href="#resume">Resume <span>05</span></a>
+  <a href="#contact">Contact <span>06</span></a>
 </div>
 
-<script>
-function toggleMobMenu() {
-  document.getElementById('mobMenu').classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  const m = document.getElementById('mobMenu');
-  if (!m) return;
-  if (!m.contains(e.target) && !e.target.classList.contains('mob-menu-btn')) {
-    m.classList.remove('open');
-  }
-});
-</script>
-<script src="ambient.js"></script>
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-label="Introduction">
+    <div class="stk st1" aria-hidden="true"><div><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" fill="var(--tang)" stroke="var(--ink)" stroke-width="3"/><g class="spin" style="transform-origin:100px 100px"><defs><path id="cp" d="M100 100 m-72 0 a72 72 0 1 1 144 0 a72 72 0 1 1 -144 0"/></defs><text font-family="Bricolage Grotesque,Arial" font-weight="800" font-size="19" letter-spacing="3.6" fill="#17120d"><textPath href="#cp">OPEN TO ROLES • CHENNAI • 2026 •</textPath></text></g><path d="M100 70l9 19 21 3-15 15 4 21-19-10-19 10 4-21-15-15 21-3z" fill="#17120d"/></svg></div></div>
+    <div class="stk st2" aria-hidden="true"><div><svg viewBox="0 0 100 110"><path d="M50 4l42 16v34c0 28-18 44-42 52C26 98 8 82 8 54V20z" fill="var(--blue)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/><path d="M30 55l14 14 28-28" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    <div class="stk st3" aria-hidden="true"><div><svg viewBox="0 0 100 110"><path d="M30 50V34a20 20 0 0 1 40 0v16" fill="none" stroke="var(--ink)" stroke-width="9" stroke-linecap="round"/><rect x="14" y="48" width="72" height="56" rx="14" fill="var(--butter)" stroke="var(--ink)" stroke-width="4"/><circle cx="50" cy="73" r="7" fill="var(--ink)"/><path d="M50 78v12" stroke="var(--ink)" stroke-width="6" stroke-linecap="round"/></svg></div></div>
+    <div class="stk st4" aria-hidden="true"><div><svg viewBox="0 0 200 60"><path d="M4 30c16-28 28 28 44 0s28 28 44 0 28 28 44 0 28 28 44 0" fill="none" stroke="var(--blue)" stroke-width="9" stroke-linecap="round"/></svg></div></div>
+
+    <div class="wrap" style="position:relative;z-index:2;width:100%">
+      <div class="tops"><span class="hi ser">Welcome, human.</span><span class="pill"><i aria-hidden="true"></i>Open to roles · Available now</span></div>
+      <h1 class="name" id="name" aria-label="Indrajit Jeeva V"><span class="ln" data-t="Indrajit"></span><span class="ln" data-t="Jeeva V." data-s="1"></span></h1>
+      <div class="hero-b">
+        <div class="tx">
+          <div class="typed" id="typed" aria-label="Security Analyst">Security Analyst</div>
+          <p>I find the <strong>breach</strong>, contain it, and trace how it happened, for platforms that move money for <strong>300+ banks</strong>.</p>
+          <p class="meta">At <strong>M2P Fintech</strong> · DFIR · Pentest<br>Chennai, Tamil Nadu</p>
+        </div>
+        <div class="btns"><a class="btn b mag" href="#work">View work ↓</a><a class="btn mag" href="https://linkedin.com/in/indrajitjeeva" target="_blank" rel="noopener">LinkedIn ↗<span class="sr"> (opens in a new tab)</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEES -->
+  <div class="bands" aria-hidden="true">
+    <div class="band b1" data-dir="-1"><div class="tr"><div class="set"><span>SIEM</span><span class="dot">✺</span><span>DFIR</span><span class="dot">✺</span><span>Pentesting</span><span class="dot">✺</span><span>Incident response</span><span class="dot">✺</span><span>Threat intel</span><span class="dot">✺</span></div><div class="set"><span>SIEM</span><span class="dot">✺</span><span>DFIR</span><span class="dot">✺</span><span>Pentesting</span><span class="dot">✺</span><span>Incident response</span><span class="dot">✺</span><span>Threat intel</span><span class="dot">✺</span></div></div></div>
+    <div class="band b2" data-dir="1"><div class="tr"><div class="set"><span>API security</span><span class="dot">✺</span><span>Wazuh</span><span class="dot">✺</span><span>Splunk</span><span class="dot">✺</span><span>ISO 27001</span><span class="dot">✺</span><span>Python</span><span class="dot">✺</span></div><div class="set"><span>API security</span><span class="dot">✺</span><span>Wazuh</span><span class="dot">✺</span><span>Splunk</span><span class="dot">✺</span><span>ISO 27001</span><span class="dot">✺</span><span>Python</span><span class="dot">✺</span></div></div></div>
+  </div>
+
+  <!-- STATEMENT -->
+  <section class="state wrap" aria-label="About">
+    <span class="k">Short version</span>
+    <p id="state">I started at a police cyber crime desk, learned forensics, tested national infrastructure, and now protect the APIs that 300+ banks rely on. I like finding the quiet signal in a very loud system.</p>
+  </section>
+
+  <!-- STATS -->
+  <div class="wrap"><div class="stats" id="stats" aria-label="At a glance">
+    <div><b data-n="300" data-s="+">300+</b><span>Banks protected</span></div>
+    <div><b data-n="20" data-s="+">20+</b><span>Markets covered</span></div>
+    <div><b data-n="5">5</b><span>Organisations</span></div>
+    <div><b data-n="5">5</b><span>Projects</span></div>
+    <div><b data-n="7">7</b><span>Certifications</span></div>
+  </div></div>
+
+  <!-- EXPERIENCE (rendered from DATA.experience in main.js) -->
+  <section class="sec wrap" id="work" aria-labelledby="h-work">
+    <div class="sh"><h2 id="h-work">Where I've <span class="ser">worked</span></h2><p>Five roles in two years. Scroll and they stack up.</p></div>
+    <div class="stack" id="stack"></div>
+  </section>
+
+  <!-- PROJECTS (rendered from DATA.projects) -->
+  <section class="hs" id="projects" aria-labelledby="h-pj">
+    <div class="hs-pin">
+      <div class="wrap" style="width:100%"><div class="sh" style="margin:0"><h2 id="h-pj">Things I've <span class="ser">built</span></h2><p>Keep scrolling and the reel moves sideways. Three are under NDA.</p></div></div>
+      <div class="hs-track" id="track" tabindex="-1"></div>
+      <div class="hs-prog" aria-hidden="true"><i id="hsp"></i></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="sec wrap" id="skills" aria-labelledby="h-sk">
+    <div class="sh"><h2 id="h-sk">What I'm <span class="ser">good at</span></h2><p>Grouped by what the work looks like, not by tool.</p></div>
+    <div class="rows">
+      <div class="row"><h3>Detect<span class="ser">.</span></h3><p>SIEM, Wazuh, Splunk, threat intelligence, network security</p><span class="ar" aria-hidden="true">+</span></div>
+      <div class="row"><h3>Investigate<span class="ser">.</span></h3><p>Digital forensics, memory and disk analysis, incident response</p><span class="ar" aria-hidden="true">+</span></div>
+      <div class="row"><h3>Attack<span class="ser">.</span></h3><p>Pentesting, vulnerability assessment, API security</p><span class="ar" aria-hidden="true">+</span></div>
+      <div class="row"><h3>Govern<span class="ser">.</span></h3><p>ISO 27001, IAM, firewalls and policy reviews</p><span class="ar" aria-hidden="true">+</span></div>
+      <div class="row"><h3>Build<span class="ser">.</span></h3><p>Python, PyQT5, Django, OpenCV, ffmpeg</p><span class="ar" aria-hidden="true">+</span></div>
+    </div>
+
+    <div class="sub-h"><h3>All 12 skills</h3><span>Self-assessed proficiency</span></div>
+    <div class="prof" id="prof"></div>
+
+    <div class="sub-h"><h3>Tools &amp; tech</h3><span>What's open on my machine most days</span></div>
+    <div class="cloud" id="tools"></div>
+  </section>
+
+  <!-- EDUCATION + SOFT SKILLS -->
+  <section class="sec wrap" id="about" aria-labelledby="h-ab">
+    <div class="sh"><h2 id="h-ab">Where it <span class="ser">started</span></h2><p>Two degrees, and the habits that make the technical work land.</p></div>
+    <div class="found">
+      <div class="panel"><h3>Education</h3><div id="edu"></div></div>
+      <div class="panel"><h3>People skills</h3><ul class="soft" id="soft"></ul></div>
+    </div>
+  </section>
+
+  <!-- CERTS + AWARDS -->
+  <section class="sec wrap" id="proof" aria-labelledby="h-pr">
+    <div class="sh"><h2 id="h-pr">Receipts<span class="ser">.</span></h2><p>Credentials you can verify and recognition from people who watched the work.</p></div>
+    <div class="two">
+      <div><div class="sub-h" style="margin-top:0"><h3>Certifications</h3><span>7 verifiable</span></div><div class="tickets" id="certs"></div></div>
+      <div id="awards"><div class="sub-h" style="margin-top:0"><h3>Awards &amp; recognition</h3><span>Honours</span></div><ol class="aws" id="awl"></ol></div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section class="sec wrap" id="resume" aria-labelledby="h-rs">
+    <div class="sh"><h2 id="h-rs">The <span class="ser">resume</span></h2><p>Security Analyst · DFIR · Threat Hunting · M2P Fintech</p></div>
+    <div class="res">
+      <a class="btn p" id="dl" href="resume.pdf" download="Indrajit_Jeeva_V_Resume.pdf">Download PDF ↓</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Open in new tab ↗<span class="sr"> (opens in a new tab)</span></a>
+    </div>
+    <div class="viewer"><iframe src="resume.pdf#view=FitH" title="Indrajit Jeeva V resume" loading="lazy"></iframe></div>
+    <p class="res-note">The inline preview is hidden on small screens. Use the buttons above to download or open the PDF.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="end wrap" id="contact" aria-labelledby="h-co">
+    <h2 id="h-co">Let's <span class="ser">talk.</span></h2>
+    <p>I'm open to security analyst and DFIR roles. Say hi and tell me what needs protecting.</p>
+    <a class="go mag" href="https://linkedin.com/in/indrajitjeeva" target="_blank" rel="noopener">Say hi<br>on LinkedIn ↗<span class="sr"> (opens in a new tab)</span></a>
+    <ul class="reach">
+      <li><span>Email</span><a id="mail" href="https://linkedin.com/in/indrajitjeeva" data-u="jeevalikestech" data-d="gmail.com">Message me on LinkedIn</a></li>
+      <li><span>Phone</span><a href="tel:+919597257282">(+91) 9597257282</a></li>
+      <li><span>LinkedIn</span><a href="https://linkedin.com/in/indrajitjeeva" target="_blank" rel="noopener">linkedin.com/in/indrajitjeeva<span class="sr"> (opens in a new tab)</span></a></li>
+      <li><span>GitHub</span><a href="https://github.com/cyber468" target="_blank" rel="noopener">github.com/cyber468<span class="sr"> (opens in a new tab)</span></a></li>
+    </ul>
+    <div class="giant" id="giant" aria-hidden="true">INDRAJIT</div>
+  </section>
+  <footer class="wrap"><span>© 2026 Indrajit Jeeva V</span><span>Chennai, India</span></footer>
+</main>
+
 <script src="main.js"></script>
-<script>
-/* Alias main.js functions so our history wrapper can call them */
-window._openPage  = openPage;
-window._closePage = closePage;
-/* Re-bind nav links to use history-aware version */
-window.openPage  = function(p) { history.pushState({page:p},'','#'+p); _openPage(p); };
-window.closePage = function()  { history.pushState({page:'home'},'','#'); _closePage(); };
-/* On load, check hash */
-(function(){
-  const hash = location.hash.replace('#','');
-  if (hash && hash !== 'home') _openPage(hash);
-})();
-</script>
 </body>
 </html>

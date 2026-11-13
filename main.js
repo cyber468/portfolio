@@ -102,162 +102,258 @@ const DATA = {
   ],
 };
 
-/* ── POINTER GLOW ─────────────────────────────────────────── */
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.setProperty('--mx', '50%');
-    card.style.setProperty('--my', '50%');
-  });
-});
+/* Content that used to be hard-coded in the HTML now lives here too. */
+DATA.tools = ['Python','Kali Linux','Burp Suite','Metasploit','Nmap','ZAP','SQLmap','Nessus','Wazuh','Splunk','Autopsy','Volatility','FTK','Sleuthkit','Dirbuster','OPNsense','Django','PyQT5','OpenCV','ffmpeg'];
+DATA.education = [
+  { degree: 'M.Sc. Cybersecurity', detail: 'Rank Holder · Bharathiar University · 2024' },
+  { degree: 'B.Sc. Computer Science', detail: 'First Class Distinction · Sri Krishna Arts & Science College · 2022' },
+];
+DATA.soft = ['Presentation Skills','Communication','Time Management','Tenacity'];
+DATA.roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hunter','SOC Analyst'];
 
-/* ── CARD FADE IN ─────────────────────────────────────────── */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-}, { threshold: 0.04 });
-document.querySelectorAll('.card').forEach(c => io.observe(c));
+/* ══════════════════════════════════════════════════════════
+   RENDER: every list on the page is built from DATA above
+══════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => [].slice.call((r || document).querySelectorAll(s));
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const root = document.documentElement;
+  const isNda = n => /classified/i.test(n);
+  const cleanName = n => n.replace(/\s*[-–—]\s*classified\s*$/i, '');
 
-/* ── SKILL BARS ───────────────────────────────────────────── */
-const sc = document.querySelector('.c-skills');
-if (sc) {
-  const sio = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('#bento .sk-fill').forEach(f =>
-          setTimeout(() => { f.style.width = f.dataset.w + '%'; }, 200)
-        );
-        sio.disconnect();
-      }
-    });
-  }, { threshold: 0.1 });
-  sio.observe(sc);
-}
+  /* experience: stacking cards */
+  const stackEl = $('#stack');
+  stackEl.innerHTML = DATA.experience.map((e, i) => `
+    <article class="rc k${(i % 5) + 1}" style="--i:${i}">
+      <div class="t"><span>${String(i + 1).padStart(2, '0')} / ${String(DATA.experience.length).padStart(2, '0')}</span><span>${esc(e.period)}</span></div>
+      <div><h3>${esc(e.company)}</h3><div class="role">${esc(e.role)} · ${esc(e.loc)}</div></div>
+      <div class="m"><ul>${e.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+      <div class="chips">${e.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>
+    </article>`).join('');
 
-/* ── TYPEWRITER ───────────────────────────────────────────── */
-const roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hunter','SOC Analyst'];
-let ri = 0, ci = 0, del = false;
-const ey = document.querySelector('.hero-ey');
-if (ey) {
-  setInterval(() => {
-    const cur = roles[ri];
-    if (!del && ci <= cur.length)     { ey.textContent = '// ' + cur.slice(0, ci++); }
-    else if (!del)                    { del = true; }
-    else if (del && ci > 0)           { ey.textContent = '// ' + cur.slice(0, --ci); }
-    else                              { del = false; ri = (ri + 1) % roles.length; }
-  }, 85);
-}
+  /* projects: horizontal reel */
+  const skin = ['', 'dark', '', 'tang', '', 'dark'];
+  const track = $('#track');
+  track.innerHTML = DATA.projects.map((p, i) => {
+    const nda = isNda(p.name);
+    return `<article class="pc ${skin[i % skin.length]}">
+      <div class="top"><span class="bdg ${nda ? 'n1' : 'n2'}">${nda ? 'Under NDA' : 'Open source'}</span><span class="n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span></div>
+      <div class="tg">${esc(p.tag)}</div>
+      <h3>${esc(cleanName(p.name))}</h3>
+      <p>${esc(p.desc)}</p>
+      <div class="chips">${p.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div>
+      ${p.link ? `<a class="go" href="${esc(p.link)}" target="_blank" rel="noopener">View on GitHub ↗<span class="sr"> (opens in a new tab)</span></a>` : ''}
+    </article>`;
+  }).join('') + `<article class="pc dark"><div class="top"><span class="bdg" style="border-color:var(--bg)">More</span><span class="n" aria-hidden="true">${String(DATA.projects.length + 1).padStart(2, '0')}</span></div>
+    <h3>The rest lives on GitHub</h3><p>Small tools, experiments and write-ups.</p>
+    <a class="go" href="https://github.com/cyber468" target="_blank" rel="noopener">github.com/cyber468 ↗<span class="sr"> (opens in a new tab)</span></a></article>`;
 
-/* ── DETAIL PAGE ──────────────────────────────────────────── */
-const detailEl = document.getElementById('view-detail');
-const wrapEl   = document.getElementById('detail-wrap');
+  /* skills: all 12 with percentages */
+  $('#prof').innerHTML = DATA.skills.map(s => `
+    <div class="pr"><div class="rw"><span>${esc(s.name)}</span><span>${s.pct}%</span></div>
+    <div class="tr" role="img" aria-label="${esc(s.name)} ${s.pct} percent"><i data-w="${s.pct}"></i></div></div>`).join('');
+  $('#tools').innerHTML = DATA.tools.map(t => `<span>${esc(t)}</span>`).join('');
 
-function openPage(p) {
-  wrapEl.innerHTML = buildPage(p);
-  detailEl.classList.add('active');
-  detailEl.scrollTop = 0;
-  window.history.pushState(null, '', `#${p}`);
-  // Animate skill bars in detail
-  setTimeout(() => {
-    detailEl.querySelectorAll('.sf-fill').forEach(f => { f.style.width = f.dataset.w + '%'; });
-  }, 180);
-  // GSAP entrance if loaded
-  if (window.gsap) {
-    gsap.from('#detail-wrap > .detail > *', { y: 18, opacity: 0, duration: .45, stagger: .07, ease: 'power2.out' });
+  /* education, soft skills */
+  $('#edu').innerHTML = DATA.education.map(e => `<div class="ed"><b>${esc(e.degree)}</b><span>${esc(e.detail)}</span></div>`).join('');
+  $('#soft').innerHTML = DATA.soft.map(s => `<li>${esc(s)}</li>`).join('');
+
+  /* certifications and awards */
+  $('#certs').innerHTML = DATA.certs.map(c => `<a class="tk" href="${esc(c.link)}" target="_blank" rel="noopener"><b>${esc(c.name)}</b><small>${esc(c.issuer)}</small><em>Verify ↗<span class="sr"> (opens in a new tab)</span></em></a>`).join('');
+  $('#awl').innerHTML = DATA.awards.map(a => `<li><span class="ic" aria-hidden="true">${a.icon}</span><div><b>${esc(a.title)}</b><small>${esc(a.sub)}</small></div></li>`).join('');
+
+  /* resume file comes from RESUME above */
+  const dl = $('#dl'); dl.href = RESUME.file; dl.setAttribute('download', RESUME.downloadName);
+
+  /* email assembled in the browser so it is not sitting in the HTML for scrapers */
+  const mail = $('#mail');
+  if (mail) { const a = mail.dataset.u + '@' + mail.dataset.d; mail.href = 'mailto:' + a; mail.textContent = a; }
+
+  /* ── theme ───────────────────────────────────────────── */
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  $('#theme').onclick = () => {
+    const t = root.getAttribute('data-theme');
+    const n = (t ? t === 'dark' : mq.matches) ? 'light' : 'dark';
+    root.setAttribute('data-theme', n);
+    try { localStorage.setItem('theme', n); } catch (e) {}
+  };
+  try { const s = localStorage.getItem('theme'); if (s) root.setAttribute('data-theme', s); } catch (e) {}
+
+  /* ── mobile menu ─────────────────────────────────────── */
+  const sheet = $('#sheet'), menuBtn = $('#menu');
+  function setMenu(open) {
+    sheet.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) $('#sheetX').focus(); else menuBtn.focus({ preventScroll: true });
   }
-}
+  menuBtn.onclick = () => setMenu(true);
+  $('#sheetX').onclick = () => setMenu(false);
+  $$('#sheet a').forEach(a => a.addEventListener('click', () => { sheet.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); document.body.style.overflow = ''; }));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && sheet.classList.contains('open')) setMenu(false); });
 
-function closePage() {
-  detailEl.classList.remove('active');
-  window.history.pushState(null, '', '#');
-}
+  /* ── hero name: split into letters ───────────────────── */
+  let idx = 0;
+  $$('#name .ln').forEach(ln => {
+    const t = ln.dataset.t, ser = ln.dataset.s;
+    const w = ser ? document.createElement('span') : ln;
+    if (ser) { w.className = 'ser'; ln.appendChild(w); }
+    t.split('').forEach(c => {
+      const s = document.createElement('span');
+      s.className = 'ch'; s.style.setProperty('--i', idx++); s.setAttribute('aria-hidden', 'true');
+      s.textContent = c === ' ' ? ' ' : c; w.appendChild(s);
+    });
+  });
 
-window.addEventListener('popstate', closePage);
+  /* typewriter role line */
+  const typed = $('#typed');
+  if (!reduce) {
+    let ri = 0, ci = 0, del = false;
+    (function tick() {
+      const cur = DATA.roles[ri]; let wait = 85;
+      if (!del) { ci++; typed.textContent = cur.slice(0, ci); if (ci === cur.length) { del = true; wait = 1500; } }
+      else { ci--; typed.textContent = cur.slice(0, ci); wait = 40; if (ci === 0) { del = false; ri = (ri + 1) % DATA.roles.length; wait = 300; } }
+      setTimeout(tick, wait);
+    })();
+  }
 
-/* ── PAGE CONTENT BUILDERS ────────────────────────────────── */
-function buildPage(p) {
-  const map = { exp: expPage, skills: skillsPage, projects: projPage, cert: certPage, awards: awardsPage, resume: resumePage };
-  return `<div class="detail">${(map[p] || (() => ''))()}</div>`;
-}
+  /* statement: word-by-word scrubbed reveal */
+  const st = $('#state');
+  st.innerHTML = st.textContent.trim().split(/\s+/).map(w => `<span class="w">${esc(w)}</span>`).join(' ');
+  const words = $$('.w', st);
+  if (reduce) words.forEach(w => w.classList.add('on'));
 
-function expPage() {
-  return `<h1 class="detail-title">Experience</h1>
-  <p class="detail-sub">Full work history — roles, responsibilities & tools used</p>
-  ${DATA.experience.map(e => `
-    <div class="d-card">
-      <div class="d-top">
-        <div><div class="d-role">${e.role}</div><div class="d-co">${e.company} · ${e.loc}</div></div>
-        <span class="d-period">${e.period}</span>
-      </div>
-      <ul class="d-ul">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
-      <div class="d-tags">${e.tags.map(t => `<span class="d-tag">${t}</span>`).join('')}</div>
-    </div>`).join('')}`;
-}
+  /* ── counters, skill bars, skill rows (observer) ─────── */
+  function count(el) {
+    const to = +el.dataset.n, sfx = el.dataset.s || '';
+    if (reduce) { el.textContent = to + sfx; return; }
+    const t0 = performance.now();
+    (function f(t) { const p = Math.min(1, (t - t0) / 1500), e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(to * e) + sfx; if (p < 1) requestAnimationFrame(f); })(t0);
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    if (el.id === 'stats') $$('[data-n]', el).forEach(count);
+    else if (el.id === 'prof') $$('[data-w]', el).forEach(b => { b.style.width = b.dataset.w + '%'; });
+    else el.classList.add('in');
+    io.unobserve(el);
+  }), { threshold: .2 });
+  io.observe($('#stats')); io.observe($('#prof'));
+  $$('.row').forEach(r => reduce ? r.classList.add('in') : io.observe(r));
+  if (reduce) $$('#prof [data-w]').forEach(b => { b.style.width = b.dataset.w + '%'; });
 
-function skillsPage() {
-  return `<h1 class="detail-title">Skills</h1>
-  <p class="detail-sub">Technical expertise & proficiency levels</p>
-  <div class="d-grid2">
-    ${DATA.skills.map(s => `
-      <div class="sf">
-        <div class="sf-row"><span class="sf-name">${s.name}</span><span class="sf-pct">${s.pct}%</span></div>
-        <div class="sf-track"><div class="sf-fill" data-w="${s.pct}"></div></div>
-      </div>`).join('')}
-  </div>`;
-}
+  /* ── pointer: cursor, parallax, magnets ──────────────── */
+  let mx = 0, my = 0, cx = 0, cy = 0, tx = 0, ty = 0, pxv = 0, pyv = 0;
+  const cur = $('#cur'), hero = $('#hero');
+  addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; }, { passive: true });
+  if (fine) document.addEventListener('pointerover', e => cur.classList.toggle('big', !!e.target.closest('a,button,.pc,.row,.tk,.cloud span')));
+  const mags = $$('.mag');
+  function magnet() {
+    if (!fine || reduce) return;
+    mags.forEach(el => {
+      const r = el.getBoundingClientRect(), dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2), d = Math.hypot(dx, dy), R = Math.max(r.width, r.height) * .9;
+      const k = d < R ? 1 - d / R : 0, c = el._c || (el._c = { x: 0, y: 0 });
+      c.x += (dx * k * .4 - c.x) * .18; c.y += (dy * k * .4 - c.y) * .18;
+      el.style.transform = `translate(${c.x.toFixed(1)}px,${c.y.toFixed(1)}px)`;
+    });
+  }
 
-function projPage() {
-  return `<h1 class="detail-title">Projects</h1>
-  <p class="detail-sub">Research, tools & applications</p>
-  ${DATA.projects.map(p => `
-    <div class="pfi ${p.link ? 'clickable' : ''}" ${p.link ? `onclick="window.open('${p.link}', '_blank')"` : ''}>
-      <div class="pfi-top">
-        <div class="pfi-name">${p.name}</div>
-        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-          <span class="pill">${p.tag}</span>
-          ${p.link ? `<a href="${p.link}" target="_blank" class="pfi-link" onclick="event.stopPropagation()">View ↗</a>` : ''}
-        </div>
-      </div>
-      <div class="pfi-desc">${p.desc}</div>
-      <div class="pfi-tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
-    </div>`).join('')}`;
-}
+  /* ── marquees: base drift + scroll velocity ──────────── */
+  const bands = $$('.band').map(b => ({ tr: $('.tr', b), dir: +b.dataset.dir, x: 0, w: 0 }));
+  const measureBands = () => bands.forEach(b => { b.w = b.tr.firstElementChild.getBoundingClientRect().width; });
+  let lastY = scrollY, vel = 0;
 
-function certPage() {
-  return `<h1 class="detail-title">Certifications</h1>
-  <p class="detail-sub">Professional credentials</p>
-  <div class="d-grid3">
-    ${DATA.certs.map(c => `
-      <div class="cfd ${c.link ? 'clickable' : ''}" ${c.link ? `onclick="window.open('${c.link}', '_blank')"` : ''}>
-        <span class="cfd-badge">Certified</span>
-        <div class="cfd-name">${c.name}</div>
-        <div class="cfd-issuer">${c.issuer}</div>
-        ${c.link ? `<a href="${c.link}" target="_blank" class="cfd-btn" onclick="event.stopPropagation()">Verify ↗</a>` : ''}
-      </div>`).join('')}
-  </div>`;
-}
+  /* ── stacking cards (falls back to a plain list when it cannot fit) ── */
+  const cards = $$('.rc'), phone = matchMedia('(max-width:820px)');
+  function setStackMode() {
+    const flat = reduce || phone.matches || cards.some(c => c.offsetHeight > innerHeight - 120);
+    stackEl.classList.toggle('flat', flat);
+  }
+  function stack() {
+    if (stackEl.classList.contains('flat')) return;
+    const vh = innerHeight;
+    cards.forEach((c, i) => {
+      const nx = cards[i + 1]; if (!nx) return;
+      const top = nx.getBoundingClientRect().top, stuck = 92 + (i + 1) * 18, p = clamp(1 - (top - stuck) / (vh * .65), 0, 1);
+      c.style.transform = `scale(${(1 - p * .06).toFixed(4)})`; c.style.setProperty('--dim', (p * .28).toFixed(3));
+    });
+  }
 
-function awardsPage() {
-  return `<h1 class="detail-title">Awards & Recognition</h1>
-  <p class="detail-sub">Achievements and Honours</p>
-  ${DATA.awards.map(a => `
-    <div class="d-card" style="display:flex;align-items:flex-start;gap:14px">
-      <span style="font-size:1.6rem;flex-shrink:0">${a.icon}</span>
-      <div><div class="d-role">${a.title}</div><div style="font-size:.7rem;color:var(--c2);margin-top:3px">${a.sub}</div></div>
-    </div>`).join('')}`;
-}
+  /* ── pinned horizontal reel (native swipe row on small screens) ── */
+  const hs = $('#projects'), hsp = $('#hsp'), small = matchMedia('(max-width:760px)');
+  let dist = 0;
+  function setReelMode() {
+    const flat = reduce || small.matches || innerHeight < 480;
+    hs.classList.toggle('flat', flat);
+    if (flat) { hs.style.removeProperty('--hh'); dist = 0; track.style.transform = ''; return; }
+    dist = Math.max(0, track.scrollWidth - root.clientWidth);
+    hs.style.setProperty('--hh', (dist + innerHeight) + 'px');
+  }
+  function reel() {
+    if (!dist) return;
+    const top = hs.getBoundingClientRect().top + scrollY, p = clamp((scrollY - top) / dist, 0, 1);
+    track.style.transform = `translate3d(${(-p * dist).toFixed(1)}px,0,0)`; hsp.style.transform = `scaleX(${p.toFixed(4)})`;
+  }
+  track.addEventListener('focusin', e => {
+    if (!dist) return;
+    const card = e.target.closest('.pc'); if (!card) return;
+    const top = hs.getBoundingClientRect().top + scrollY, pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    scrollTo({ top: top + clamp((card.offsetLeft - pad) / dist, 0, 1) * dist, behavior: 'auto' });
+    $('.hs-pin').scrollLeft = 0;
+  });
 
-function resumePage() {
-  return `<h1 class="detail-title">Resume</h1>
-  <p class="detail-sub">Security Analyst · DFIR · Threat Hunting · M2P Fintech</p>
-  <div class="resume-toolbar">
-    <a href="${RESUME.file}" download="${RESUME.downloadName}" class="resume-dl-btn">Download PDF ↓</a>
-    <a href="${RESUME.file}" target="_blank" rel="noopener" class="resume-open-btn">Open in new tab ↗</a>
-  </div>
-  <div class="resume-viewer">
-    <iframe src="${RESUME.file}#view=FitH" title="Indrajit Jeeva V — Resume" type="application/pdf"></iframe>
-  </div>`;
-}
+  /* ── chrome: progress bar, nav hide, active link ─────── */
+  const nav = $('#nav'), bar = $('#bar'), giant = $('#giant');
+  const links = $$('.nav a.l'), secs = links.map(a => $(a.getAttribute('href')));
+  let ly = scrollY;
+  function chrome() {
+    const y = scrollY, h = root.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${h > 0 ? clamp(y / h, 0, 1) : 0})`;
+    nav.classList.toggle('hide', y > ly && y > 240 && !sheet.classList.contains('open')); ly = y;
+    let c = -1; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * .4) c = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === c));
+  }
+
+  /* ── one frame loop for everything continuous ────────── */
+  function frame() {
+    requestAnimationFrame(frame);
+    const y = scrollY; vel += ((y - lastY) - vel) * .12; lastY = y;
+    if (fine) { cx += (mx - cx) * .2; cy += (my - cy) * .2; cur.style.transform = `translate(${cx.toFixed(1)}px,${cy.toFixed(1)}px)`; }
+    pxv += (tx - pxv) * .07; pyv += (ty - pyv) * .07;
+    hero.style.setProperty('--px', (pxv * 2).toFixed(3)); hero.style.setProperty('--py', (pyv * 2).toFixed(3));
+    bands.forEach(b => {
+      if (!b.w) return;
+      b.x += b.dir * (.9 + Math.abs(vel) * .55) * (vel < 0 ? -1 : 1);
+      b.x = ((b.x % b.w) + b.w) % b.w;
+      b.tr.style.transform = `translate3d(${(-b.x).toFixed(1)}px,0,0)`;
+    });
+    const r = st.getBoundingClientRect(), p = clamp((innerHeight * .85 - r.top) / (innerHeight * .55 + r.height * .6), 0, 1), n = Math.round(p * words.length);
+    words.forEach((w, i) => { const on = i < n; if (w._on !== on) { w._on = on; w.classList.toggle('on', on); } });
+    stack(); reel(); magnet();
+    const gr = giant.getBoundingClientRect();
+    giant.style.transform = `translateX(${(clamp((gr.top - innerHeight) / innerHeight, -1, 0) * 40).toFixed(1)}px)`;
+    chrome();
+  }
+
+  function layout() { measureBands(); setStackMode(); setReelMode(); }
+  layout();
+  addEventListener('resize', layout);
+  addEventListener('load', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  if (reduce) { chrome(); addEventListener('scroll', chrome, { passive: true }); }
+  else requestAnimationFrame(frame);
+
+  /* ── old #hash links (from the previous detail pages) still work ── */
+  const LEGACY = { exp: 'work', cert: 'proof', awards: 'awards', projects: 'projects', skills: 'skills', resume: 'resume' };
+  function goHash() {
+    const h = location.hash.replace('#', ''); if (!h) return;
+    const t = document.getElementById(LEGACY[h] || h);
+    if (t) setTimeout(() => t.scrollIntoView({ behavior: 'auto' }), 60);
+  }
+  addEventListener('load', goHash);
+})();
