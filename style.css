@@ -56,7 +56,6 @@ noscript .ns{padding:24px 20px;text-align:center;background:var(--butter);color:
 .btn.b{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn:hover{background:var(--ink);color:var(--bg)}
 .btn.p:hover,.btn.b:hover{background:var(--tang);border-color:var(--tang);color:#17120d}
-.mag{display:inline-block}
 
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-block:130px 56px;overflow:hidden}
