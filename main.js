@@ -250,7 +250,7 @@ DATA.roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hu
   /* ── pointer: cursor, parallax, magnets ──────────────── */
   let mx = 0, my = 0, cx = 0, cy = 0, tx = 0, ty = 0, pxv = 0, pyv = 0;
   const cur = $('#cur'), hero = $('#hero');
-  addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; }, { passive: true });
+  addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY; tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; }, { passive: true });
   if (fine) document.addEventListener('pointerover', e => cur.classList.toggle('big', !!e.target.closest('a,button,.pc,.row,.tk,.cloud span')));
   const mags = $$('.mag');
   function magnet() {
@@ -314,7 +314,8 @@ DATA.roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hu
   function chrome() {
     const y = scrollY, h = root.scrollHeight - innerHeight;
     bar.style.transform = `scaleX(${h > 0 ? clamp(y / h, 0, 1) : 0})`;
-    nav.classList.toggle('hide', y > ly && y > 240 && !sheet.classList.contains('open')); ly = y;
+    if (Math.abs(y - ly) > 6) { nav.classList.toggle('hide', y > ly && y > 240 && !sheet.classList.contains('open')); ly = y; }
+    else if (y <= 240) nav.classList.remove('hide');
     let c = -1; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * .4) c = i; });
     links.forEach((a, i) => a.classList.toggle('on', i === c));
   }
@@ -324,8 +325,10 @@ DATA.roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hu
     requestAnimationFrame(frame);
     const y = scrollY; vel += ((y - lastY) - vel) * .12; lastY = y;
     if (fine) { cx += (mx - cx) * .2; cy += (my - cy) * .2; cur.style.transform = `translate(${cx.toFixed(1)}px,${cy.toFixed(1)}px)`; }
-    pxv += (tx - pxv) * .07; pyv += (ty - pyv) * .07;
-    hero.style.setProperty('--px', (pxv * 2).toFixed(3)); hero.style.setProperty('--py', (pyv * 2).toFixed(3));
+    if (Math.abs(tx - pxv) > .0005 || Math.abs(ty - pyv) > .0005) {
+      pxv += (tx - pxv) * .07; pyv += (ty - pyv) * .07;
+      hero.style.setProperty('--px', (pxv * 2).toFixed(3)); hero.style.setProperty('--py', (pyv * 2).toFixed(3));
+    }
     bands.forEach(b => {
       if (!b.w) return;
       b.x += b.dir * (.9 + Math.abs(vel) * .55) * (vel < 0 ? -1 : 1);
@@ -342,7 +345,12 @@ DATA.roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hu
 
   function layout() { measureBands(); setStackMode(); setReelMode(); }
   layout();
-  addEventListener('resize', layout);
+  /* On phones the URL bar showing/hiding fires resize on every scroll; only re-layout when the width changes. */
+  let lw = innerWidth, lt = 0;
+  addEventListener('resize', () => {
+    clearTimeout(lt);
+    lt = setTimeout(() => { if (innerWidth === lw && !fine) return; lw = innerWidth; layout(); }, 120);
+  });
   addEventListener('load', layout);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
   if (reduce) { chrome(); addEventListener('scroll', chrome, { passive: true }); }
