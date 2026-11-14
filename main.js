@@ -6,7 +6,7 @@ const RESUME = {
 const DATA = {
   experience: [
   {
-      role:'Security Engineer',company :ZOHO,loc:'Coimbatore , TN',
+      role:'Security Engineer',company: 'ZOHO', loc: 'Coimbatore, TN',
     period:'Oct 2026 – Present',
     bullets:[
       'Security operations across Zoho\'s global SaaS infrastructure — 50+ products, 100+ data centers, 20+ markets',
