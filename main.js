@@ -4,10 +4,17 @@ const RESUME = {
   downloadName: 'Indrajit_Jeeva_V_Resume.pdf',
 };
 const DATA = {
-  experience: [
-    {
+  experience: [{role:'Security Engineer',company :ZOHO,loc:'Coimbatore , TN',
+    period:'Oct 2026 – Present',
+    bullets:[
+      'Security operations across Zoho\'s global SaaS infrastructure — 50+ products, 100+ data centers, 20+ markets',
+      'Detection enginnering using internal SIEM and threat intel feeds'],
+      tags:['Linux Security','Network security','Java','Application security']
+
+  }
+    ,{
       role: 'Security Analyst', company: 'M2P Fintech', loc: 'Chennai, TN',
-      period: 'Oct 2024 – Present',
+      period: 'Jan 2025 – Sep 2026',
       bullets: [
         'Security operations across Asia\'s largest API infrastructure — 300+ banks, 100+ NBFCs, 800+ fintechs in 20+ markets',
         'Threat monitoring, detection & triage using Wazuh / Splunk SIEM',
