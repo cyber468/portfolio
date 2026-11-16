@@ -10,7 +10,10 @@ const DATA = {
     period:'Oct 2026 – Present',
     bullets:[
       'Security operations across Zoho\'s global SaaS infrastructure — 50+ products, 100+ data centers, 20+ markets',
-      'Detection enginnering using internal SIEM and threat intel feeds'],
+      'Detection engineering using internal SIEM and threat intel feeds',
+      'Defending a privately held, bootstrapped company that runs its own data centers instead of public clouds, so security reaches down to the physical layer',
+      'Platform operates under ISO 27001, 27017, 27018 and SOC 2 Type II, with a public bug bounty and responsible disclosure program',
+      'Privacy-first by policy: no third-party ads and no selling of customer data'],
       tags:['Linux Security','Network security','Java','Application security']
     }
     ,{
@@ -117,7 +120,7 @@ DATA.education = [
   { degree: 'B.Sc. Computer Science', detail: 'First Class Distinction · Sri Krishna Arts & Science College · 2022' },
 ];
 DATA.soft = ['Presentation Skills','Communication','Time Management','Tenacity'];
-DATA.roles = ['Security Analyst','DFIR Specialist','Pentest Engineer','Threat Hunter','SOC Analyst'];
+DATA.roles = ['Security Engineer','SOC Analyst','Detection Engineer','AppSec Engineer','DFIR Specialist'];
 
 /* ══════════════════════════════════════════════════════════
    RENDER: every list on the page is built from DATA above
